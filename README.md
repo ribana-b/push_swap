@@ -35,4 +35,4 @@ I have to create a function that has to replicate the behaviour of the given che
 
 ## Progress
 
-If you want to check my progress as a student in 42 Málaga check out my [main repository](https://github.com/SrRecursive/42Malaga)!
+If you want to check my progress as a student in 42 Málaga check out my [main repository](https://github.com/SrVariable/42Malaga)!

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_splitlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 17:35:31 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/12/26 22:25:39 by ribana-b         ###   ########.fr       */
+/*   Created: 2024/01/16 17:19:07 by ribana-b          #+#    #+#             */
+/*   Updated: 2024/02/11 07:00:05 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/bfl.h"
 
-char	*ft_strrchr(const char *str, int character)
+size_t	ft_split_length(char **split)
 {
-	size_t	strlength;
+	size_t	counter;
 
-	if (!str)
-		return (NULL);
-	if (!(*str) && character == '\0')
-		return ((char *)str);
-	strlength = ft_strlen(str) + 1;
-	while (strlength-- > 0)
-		if ((unsigned char)str[strlength] == (unsigned char)character)
-			return ((char *)str + strlength);
-	return (NULL);
+	if (!split)
+		return (0);
+	counter = 0;
+	while (split[counter])
+		counter++;
+	return (counter);
 }

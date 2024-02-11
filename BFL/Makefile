@@ -37,22 +37,24 @@ RESET = \033[0m
 NAME = bfl.a
 
 # <-- Compilation Command --> #
-CC = gcc
+CC = cc
 
 # <-- Compilation Flags --> #
 CFLAGS = -Wall -Wextra -Werror
 
 # <-- Remove Command -->#
-RM = rm -f
+RM = rm -rf
 
 # <-- Directories --> #
 BOOL_DIR = bool/
 CHAR_DIR = char/
+DATA_STRUCTURE_DIR = linked_list/
 FD_DIR = fd/
 FT_PRINTF_DIR = ft_printf/
 GET_NEXT_LINE_DIR = get_next_line/
 MEMORY_DIR = memory/
 STRING_DIR = string/
+OBJ_DIR = obj/
 
 # <-- Files --> #
 BOOL_FILES = ft_isalnum.c \
@@ -67,6 +69,9 @@ BOOL_FILES = ft_isalnum.c \
 
 CHAR_FILES = ft_tolower.c \
 				ft_toupper.c
+
+DATA_STRUCTURE_FILES = ll_create.c \
+						ll_destroy.c
 
 FD_FILES = ft_putaddress_fd.c \
 			ft_putchar_fd.c \
@@ -83,12 +88,12 @@ GET_NEXT_LINE_FILES = get_next_line.c
 
 MEMORY_FILES = ft_bzero.c \
 				ft_calloc.c \
+				ft_free.c \
 				ft_memchr.c \
 				ft_memcmp.c \
 				ft_memcpy.c \
 				ft_memmove.c \
 				ft_memset.c 
-
 
 STRING_FILES = ft_atoi.c \
 				ft_atol.c \
@@ -105,12 +110,14 @@ STRING_FILES = ft_atoi.c \
 				ft_strncmp.c \
 				ft_strnstr.c \
 				ft_split.c \
+				ft_splitlength.c \
 				ft_strrchr.c \
 				ft_substr.c
 
 # <-- Directories + Files --> #
 BOOL = $(addprefix $(BOOL_DIR), $(BOOL_FILES))
 CHAR = $(addprefix $(CHAR_DIR), $(CHAR_FILES))
+DATA_STRUCTURE = $(addprefix $(DATA_STRUCTURE_DIR), $(DATA_STRUCTURE_FILES))
 FD = $(addprefix $(FD_DIR), $(FD_FILES))
 FT_PRINTF = $(addprefix $(FT_PRINTF_DIR), $(FT_PRINTF_FILES))
 GET_NEXT_LINE = $(addprefix $(GET_NEXT_LINE_DIR), $(GET_NEXT_LINE_FILES))
@@ -118,34 +125,74 @@ MEMORY = $(addprefix $(MEMORY_DIR), $(MEMORY_FILES))
 STRING = $(addprefix $(STRING_DIR), $(STRING_FILES))
 
 # <-- Objects --> #
-OBJ_BOOL = $(BOOL:.c=.o)
-OBJ_CHAR = $(CHAR:.c=.o)
-OBJ_FD = $(FD:.c=.o)
-OBJ_FT_PRINTF = $(FT_PRINTF:.c=.o)
-OBJ_GET_NEXT_LINE = $(GET_NEXT_LINE:.c=.o)
-OBJ_MEMORY = $(MEMORY:.c=.o)
-OBJ_STRING = $(STRING:.c=.o)
+OBJ = $(patsubst $(BOOL_DIR)%.c, $(OBJ_DIR)%.o, $(BOOL)) \
+		$(patsubst $(CHAR_DIR)%.c, $(OBJ_DIR)%.o, $(CHAR)) \
+		$(patsubst $(DATA_STRUCTURE_DIR)%.c, $(OBJ_DIR)%.o, $(DATA_STRUCTURE)) \
+		$(patsubst $(FD_DIR)%.c, $(OBJ_DIR)%.o, $(FD)) \
+		$(patsubst $(FT_PRINTF_DIR)%.c, $(OBJ_DIR)%.o, $(FT_PRINTF)) \
+		$(patsubst $(GET_NEXT_LINE_DIR)%.c, $(OBJ_DIR)%.o, $(GET_NEXT_LINE)) \
+		$(patsubst $(MEMORY_DIR)%.c, $(OBJ_DIR)%.o, $(MEMORY)) \
+		$(patsubst $(STRING_DIR)%.c, $(OBJ_DIR)%.o, $(STRING)) \
 
 # ========================================================================== #
 
 # <-- Main Target --> #
 all: $(NAME)
 
-# <--Library Creation-->#
-$(NAME): $(OBJ_BOOL) $(OBJ_CHAR) $(OBJ_FD) $(OBJ_FT_PRINTF) $(OBJ_GET_NEXT_LINE) $(OBJ_MEMORY) $(OBJ_STRING)
+# <-- Library Creation --> #
+$(NAME): $(OBJ_DIR) $(OBJ)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_GREEN)created successfully$(RESET)"
-	@ar rcs $@ $^
+	@ar rcs $@ $(OBJ)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully$(RESET)"
 
+# <-- Object Directory Creation --> #
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
 # <-- Objects Creation --> #
-%.o: %.c
+$(OBJ_DIR)%.o: $(BOOL_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(CHAR_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(DATA_STRUCTURE_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(FD_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(FT_PRINTF_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(GET_NEXT_LINE_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(MEMORY_DIR)%.c
+	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(STRING_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 # <-- Objects Destruction --> #
 clean:
-	@$(RM) $(OBJ_BOOL) $(OBJ_CHAR) $(OBJ_FD) $(OBJ_FT_PRINTF) $(OBJ_GET_NEXT_LINE) $(OBJ_MEMORY) $(OBJ_STRING)
+	@$(RM) $(OBJ_DIR)
 	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_RED)destroyed successfully$(RESET)"
 
 # <-- Clean Execution + bfl.a Destruction --> #
@@ -156,7 +203,13 @@ fclean: clean
 # <-- Fclean Execution + All Execution --> #
 re: fclean all
 
+# <-- Testers -->
+test: all
+	@$(CC) $(CFLAGS) test/main_test.c $(NAME)
+	@./a.out
+	@rm ./a.out *.txt
+
 # <-- Targets Declaration --> #
-.PHONY = all clean fclean re
+.PHONY = all clean fclean re test
 
 # ========================================================================== #

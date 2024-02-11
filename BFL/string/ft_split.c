@@ -6,104 +6,93 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:32:56 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/16 18:05:47 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/11 06:12:11 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/bfl.h"
 
-static char	**free_split(char **str, int counter)
+static char	**free_split(char **split)
 {
-	if (!str)
-		return (NULL);
-	while (counter-- > 0)
-	{
-		free(str[counter]);
-		str[counter] = NULL;
-	}
-	free(str);
-	str = NULL;
+	size_t	index;
+
+	index = 0;
+	while (split[index] != NULL)
+		free(split[index++]);
+	free(split);
 	return (NULL);
 }
 
-static int	word_counter(const char *str, char character)
+static size_t	count_word(const char *str, char delimit)
 {
-	char	*temp;
-	int		counter;
+	size_t	counter;
+	size_t	index;
 
 	if (!str)
 		return (0);
-	temp = (char *)str;
 	counter = 0;
-	while (*temp)
+	index = 0;
+	while (str[index] != '\0')
 	{
-		if (*temp != character)
+		if (str[index] == delimit)
+			index++;
+		else
 		{
 			counter++;
-			while (*temp && *temp != character)
-				temp++;
+			while (str[index] != delimit && str[index] != '\0')
+				index++;
 		}
-		else
-			temp++;
 	}
 	return (counter);
 }
 
-static char	*get_word(const char *str, char character)
+static char	*get_word(const char *str, char delimit, size_t *j)
 {
 	char	*word;
-	int		counter;
+	size_t	index;
 
-	if (!str)
+	index = 0;
+	while (str[*j + index] != '\0' && str[*j + index] != delimit)
+		index++;
+	word = (char *)malloc((index + 1) * sizeof(char));
+	if (word == NULL)
 		return (NULL);
-	counter = 0;
-	while (str[counter] && str[counter] != character)
-		counter++;
-	word = (char *)malloc((counter + 1) * sizeof(char));
-	if (!word)
-		return (NULL);
-	word[counter] = '\0';
-	while (counter-- > 0)
-		word[counter] = str[counter];
+	index = 0;
+	while (str[*j] != '\0' && str[*j] != delimit)
+	{
+		word[index] = str[*j];
+		index++;
+		(*j)++;
+	}
+	word[index] = '\0';
 	return (word);
 }
 
-static char	**real_split(const char *str, char character)
+char	**ft_split(const char *str, char delimit)
 {
 	char	**split;
-	int		counter;
-	int		wordcounter;
-
-	wordcounter = word_counter(str, character);
-	split = (char **)malloc((wordcounter + 1) * sizeof(char *));
-	if (!split)
-		return (NULL);
-	counter = 0;
-	while (*str && counter < wordcounter)
-	{
-		while (*str && *str == character)
-			str++;
-		split[counter] = get_word(str, character);
-		if (!split[counter])
-			return (free_split(split, counter));
-		counter++;
-		while (*str && *str != character)
-			str++;
-	}
-	split[counter] = NULL;
-	return (split);
-}
-
-char	**ft_split(const char *str, char character)
-{
-	char	**split;
-	char	*temp;
+	size_t	i;
+	size_t	j;
 
 	if (!str)
 		return (NULL);
-	temp = (char *)str;
-	split = real_split(temp, character);
+	split = (char **)malloc((count_word(str, delimit) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[j] != '\0')
+	{
+		if (str[j] == delimit)
+			j++;
+		else
+		{
+			split[i] = get_word(str, delimit, &j);
+			if (split[i] == NULL)
+				return (free_split(split));
+			i++;
+		}
+	}
+	split[i] = NULL;
 	return (split);
 }

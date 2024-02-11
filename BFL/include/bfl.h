@@ -6,23 +6,70 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:10:14 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/01/14 21:24:20 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/11 08:14:09 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BFL_H
 # define BFL_H
 
-/* <--Defines Section--> */
+/* <-- Defines Section --> */
 
 # define BUFFER_SIZE 1024
 
-/* <--Libraries Section--> */
+/* <-- Libraries Section --> */
 
 /* ==========================================================================*/
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stddef.h>
+/* ==========================================================================*/
+
+/* <-- Structs Section --> */
+
+/* ==========================================================================*/
+/* Linked List */
+
+/**
+ * @struct t_ll
+ * @brief Typedef for struct s_ll which is a structure representing
+ * a node in a linked list.
+ *
+ * @var t_ll::content
+ * Pointer to the content of the current node.
+ * @var t_ll::next
+ * Pointer to the next node in the linked list.
+*/
+typedef struct s_ll
+{
+	void		*content;
+	struct s_ll	*next;
+}				t_ll;
+/* ==========================================================================*/
+
+/* ==========================================================================*/
+/* Doubly Linked List */
+
+/**
+ * @struct t_dll
+ * @brief Typedef for struct s_dll which is a structure representing
+ * a node in a double linked list.
+ *
+ * @var t_dll::content
+ * Pointer to the content of the current node.
+ * @var t_dll::previous
+ * Pointer to the previous node in the linked list.
+ * @var t_dll::next
+ * Pointer to the next node of the linked list.
+*/
+typedef struct s_dll
+{
+	void			*content;
+	struct s_dll	*previous;
+	struct s_dll	*next;
+}					t_dll;
 /* ==========================================================================*/
 
 /* <--Functions Section--> */
@@ -191,6 +238,68 @@ int				ft_tolower(int character);
  * @retval - character unmodified.
 */
 int				ft_toupper(int character);
+/* ========================================================================= */
+
+/* ========================================================================= */
+/* Data Structures*/
+
+/**
+ * @brief Create a new linked list node.
+ *
+ * @details This function allocates memory for a new linked list node.
+ *
+ * @retval - A pointer to the newly created linked list node.
+ * @retval - NULL if memory allocation fails.
+ *
+ * @note The caller is responsible for freeing the memory allocated.
+*/
+t_ll			*ll_create_node(void);
+
+/**
+ * @brief Add a new node to the linked list.
+ *
+ * @details This function appends a new node to the linked list.
+ *
+ * @param ll Pointer to the linked list.
+ *
+ * @note The caller is responsible for freeing the memory allocated.
+*/
+void			ll_add_node(t_ll **ll);
+
+/**
+ * @brief Generate a linked list of a specified length.
+ *
+ * @details This function generates a linked list of the specified length,
+ * with each node initialized and linked.
+ *
+ * @param length The length of the linked list to generate.
+ *
+ * @retval - A pointer to the head of the generated linked list.
+ * @retval - NULL if memory allocation fails.
+ *
+ * @note The caller is responsible for freeing the memory allocated.
+*/
+t_ll			*ll_generator(int length);
+
+/**
+ * @brief Destroy the content of a linked list node.
+ *
+ * @details This function frees the memory allocated for the content
+ * of a linked list node.
+ *
+ * @param ll Pointer to the linked list node.
+*/
+void			ll_destroy_content(t_ll **ll);
+
+/**
+ *	@brief Destroy a linked list.
+ *
+ *	@details This function frees the memory for the entire linked list,
+ *	including its nodes and content.
+ *
+ *	@param ll Pointer to the head of the linked list.
+*/
+void			ll_destroy(t_ll **ll);
 /* ========================================================================= */
 
 /* ========================================================================= */
@@ -487,6 +596,21 @@ void			*ft_memmove(void *str, const void *str2, size_t bytes);
  * less than the first bytes of str2 respectively
 */
 int				ft_memcmp(const void *str, const void *str2, size_t bytes);
+
+/**
+ * @brief Free a pointer (up to triple pointer) and set to NULL.
+ * 
+ * @details This function frees a pointer (up to a triple pointer)
+ * and sets it to NULL. The number of pointers to be freed is
+ * determined by the value of ptr_size.
+ * 
+ * @param ptr_address Address of the pointer.
+ * @param asterisk_amount Amount of asterisks.
+ *
+ * @note When asterisk_amount is greater than 1, the every pointer
+ * must be NULL terminated.
+*/
+void			ft_free(void *ptr_address, size_t asterisk_amount);
 /* ==========================================================================*/
 
 /* ==========================================================================*/
@@ -600,8 +724,8 @@ char			*ft_strdup(const char *str);
  *
  * @details This function copies characters from the string str2 to str,
  * ensuring null-termination. If str is large enough to accomodate bytes
- * characters, it returns the total lenght of the concatenated strings
- * str and str2. If str is not large enough, it returns the lenght of
+ * characters, it returns the total length of the concatenated strings
+ * str and str2. If str is not large enough, it returns the length of
  * str2 + bytes.
  *
  * @param str The destination string.
@@ -609,9 +733,9 @@ char			*ft_strdup(const char *str);
  * @param bytes The maximum number of characters to copy, including
  * the null-terminator.
  *
- * @retval - The total lenght of the concatenated strings str and str2
+ * @retval - The total length of the concatenated strings str and str2
  * if successful.
- * @retval - The lenght of str2 + bytes if str is not large enough.
+ * @retval - The length of str2 + bytes if str is not large enough.
  * @retval - 0 if either str or str2 is NULL.
 */
 size_t			ft_strlcpy(char *str, const char *str2, size_t bytes);
@@ -621,16 +745,16 @@ size_t			ft_strlcpy(char *str, const char *str2, size_t bytes);
  *
  * @details This function appends the contents of the null -terminated
  * string str2 to the end of the null-terminated string str, ensuring
- * that the total lenght does not exceed the given buffer size. The
+ * that the total length does not exceed the given buffer size. The
  * resulting string in str is null-terminated.
  *
  * @param str A pointer to the destination null-terminated string.
  * @param str2 A pointer to the source null-terminated string to
  * be appennded.
  * @param bytes The size of the buffer, indicating the maximum
- * allowed lenght for the resulting string in str.
+ * allowed length for the resulting string in str.
  *
- * @retval - The total lenght of the concatenated strings (excluding
+ * @retval - The total length of the concatenated strings (excluding
  * the null terminator) if the operation is successful.
  * @retval - 0 if either str or str is NULL.
 */
@@ -807,6 +931,24 @@ char			*ft_itoa(int number);
  * both the array and its elements.
 */
 char			**ft_split(const char *str, char character);
+
+/**
+ * @brief Calculate the length of a null-terminated array of strings.
+ * 
+ * @details This function takes a null-terminated array of strings,
+ * commonly obtained through string splitting, and calculates the
+ * total number of strings in the array.
+ * 
+ * @param split Null-terminated array of strings.
+ * 
+ * @return The total number of strings in the array (excluding the null
+ * terminator).
+ * @return 0 If the input is NULL.
+ * 
+ * @note The function assumes that the input array is null-terminated
+ * and ends with a NULL pointer.
+*/
+size_t			ft_splitlength(char **split);
 /* ==========================================================================*/
 
 #endif

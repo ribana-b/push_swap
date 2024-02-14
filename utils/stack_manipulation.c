@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:48:46 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/15 00:24:37 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:36:47 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_stack	*create_stack(int index, int value)
 
 void	destroy_stack(t_stack **stack)
 {
-	t_stack	*temp;
+	t_stack *temp;
 
 	if (!(*stack))
 		return ;

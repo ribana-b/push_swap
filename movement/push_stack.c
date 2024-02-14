@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/15 01:55:10 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:51:01 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 static void	push_index_plus_plus(t_stack *stack)
 {

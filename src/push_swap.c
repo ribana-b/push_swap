@@ -6,17 +6,18 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/01/14 23:31:07 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:58:40 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 int	stack_len(t_stack *stack)
 {
 	t_stack	*temp;
-	int i = 0;
+	int		i;
 
+	i = 0;
 	if (!stack)
 		return (0);
 	temp = stack;
@@ -28,32 +29,37 @@ int	stack_len(t_stack *stack)
 	return (i);
 }
 
-int	push_swap(char **argv)
+int	push_swap(t_stack *stack_a)
 {
-	t_stack	*stacka;
-
-	if (fill_stacka(&stacka, argv) < 0)
-		return (-1);
-	if (stacka || check_sorted(stacka))
+	if (!stack_a)
 		return (1);
-	sort_stack(&stacka);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
+	t_stack	*stacka;
+	char	***parsed_args;
+
 	if (argc < 2)
-	{
-		ft_printf("Usage\n1: %s <list of numbers>\n", argv[0]);
-		ft_printf("2: %s <n1> <n2> ... <nx>\n", argv[0]);
 		return (1);
-	}
-	if (argc == 2)
-		argv = ft_split(argv + 1, ' ');
-	if (push_swap(argv) < 0)
+	parsed_args = parse_args(argc, argv);
+	if (!parsed_args)
 	{
-		// Free function
+		ft_putstr_fd("Error\n", 2);
+		return (2);
 	}
+	stacka = fill_stack(parsed_args, 0);
+	if (!stacka)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (3);
+	}
+	ft_free(&parsed_args, 3);
+	push_swap(stacka);
+	print_stack(stacka);
+	destroy_stack(&stacka);
+	return (0);
 }
 
 // int	main(int argc, char **argv)

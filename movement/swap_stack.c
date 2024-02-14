@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:47:07 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/01/07 23:53:01 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:50:48 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 void	swap_stack_a(t_stack *stacka)
 {

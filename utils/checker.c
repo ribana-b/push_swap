@@ -6,24 +6,24 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:32 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/01/09 21:24:32 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:22:55 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 t_bool	check_sorted(t_stack *stacka)
 {
 	t_stack	*temp;
 
 	if (!stacka)
-		return false;
+		return (false);
 	temp = stacka;
 	while (temp->next)
 	{
 		if (temp->value > temp->next->value)
-			return false;
+			return (false);
 		temp = temp->next;
 	}
-	return true;
+	return (true);
 }

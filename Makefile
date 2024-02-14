@@ -40,7 +40,7 @@ NAME = push_swap
 CC = cc
 
 # <-- Compilation Flags --> #
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # <-- Remove Command --> #
 RM = rm -rf
@@ -61,7 +61,8 @@ SORT_DIR = sort/
 # <-- Files --> #
 SRC_FILES = push_swap.c
 UTILS_FILES = checker.c \
-				stack_manipulation.c
+				stack_manipulation.c \
+				parser.c
 MOVEMENT_FILES = push_stack.c \
 				reverse_rotate_stack.c \
 				rotate_stack.c \

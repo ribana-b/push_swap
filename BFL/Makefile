@@ -42,6 +42,9 @@ CC = cc
 # <-- Compilation Flags --> #
 CFLAGS = -Wall -Wextra -Werror
 
+# <-- Include Library -->#
+INCLUDE = -I ./include
+
 # <-- Remove Command -->#
 RM = rm -rf
 
@@ -110,7 +113,7 @@ STRING_FILES = ft_atoi.c \
 				ft_strncmp.c \
 				ft_strnstr.c \
 				ft_split.c \
-				ft_splitlength.c \
+				ft_splitlen.c \
 				ft_strrchr.c \
 				ft_substr.c
 
@@ -152,48 +155,48 @@ $(OBJ_DIR):
 # <-- Objects Creation --> #
 $(OBJ_DIR)%.o: $(BOOL_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(CHAR_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(DATA_STRUCTURE_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(FD_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(FT_PRINTF_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(GET_NEXT_LINE_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(MEMORY_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(STRING_DIR)%.c
 	@echo "🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🔨 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 # <-- Objects Destruction --> #
 clean:
 	@$(RM) $(OBJ_DIR)
-	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_RED)destroyed successfully$(RESET)"
+	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)BFL Objects $(RESET)$(T_RED)destroyed successfully$(RESET)"
 
 # <-- Clean Execution + bfl.a Destruction --> #
 fclean: clean
@@ -205,7 +208,7 @@ re: fclean all
 
 # <-- Testers -->
 test: all
-	@$(CC) $(CFLAGS) test/main_test.c $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDE) test/main_test.c $(NAME)
 	@./a.out
 	@rm ./a.out *.txt
 

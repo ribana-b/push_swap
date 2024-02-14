@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ll_destroy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 09:27:42 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/11 07:25:52 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
-void	ll_destroy_content(t_ll **ll)
+void	ll_destroy_content(t_ll **linked_list)
 {
-	if (!(*ll) || !((*ll)->content))
+	if (!(*linked_list) || !((*linked_list)->content))
 		return ;
-	free((*ll)->content);
-	(*ll)->content = NULL;
+	free((*linked_list)->content);
+	(*linked_list)->content = NULL;
 	return ;
 }
 
-void	ll_destroy(t_ll **ll)
+void	ll_destroy(t_ll **linked_list)
 {
 	t_ll	*temp;
 
-	if (!(*ll))
+	if (!(*linked_list))
 		return ;
-	while (*ll)
+	while (*linked_list)
 	{
-		temp = (*ll)->next;
-		ll_destroy_content(ll);
-		free(*ll);
-		*ll = temp;
+		temp = (*linked_list)->next;
+		ll_destroy_content(linked_list);
+		free(*linked_list);
+		*linked_list = temp;
 	}
 	return ;
 }

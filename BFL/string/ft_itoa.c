@@ -6,25 +6,22 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:32:44 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/12/26 22:25:39 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:20:41 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
-static int	number_length(int number)
+static size_t	number_length(int number)
 {
-	long	temp;
-	int		counter;
+	size_t	counter;
 
 	if (number < 0)
-		temp = (long)number * -1;
-	else
-		temp = (long)number;
+		number = number * -1;
 	counter = 1;
-	while ((temp / 10) > 0)
+	while (number / 10)
 	{
-		temp /= 10;
+		number /= 10;
 		counter++;
 	}
 	return (counter);
@@ -43,7 +40,7 @@ static char	*fixed_malloc(int number, size_t bytes)
 	return (str);
 }
 
-static void	number_to_string(char *str, int number, int numberlength)
+static void	number_to_string(char *str, int number, size_t length)
 {
 	long	temp;
 
@@ -51,10 +48,10 @@ static void	number_to_string(char *str, int number, int numberlength)
 		temp = (long)number * -1;
 	else
 		temp = (long)number;
-	str[numberlength] = '\0';
-	while (numberlength-- > 0)
+	str[length] = '\0';
+	while (length--)
 	{
-		str[numberlength] = temp % 10 + '0';
+		str[length] = temp % 10 + '0';
 		temp /= 10;
 	}
 	return ;
@@ -63,18 +60,18 @@ static void	number_to_string(char *str, int number, int numberlength)
 char	*ft_itoa(int number)
 {
 	char	*str;
-	int		numberlength;
+	size_t	length;
 
-	numberlength = number_length(number);
-	str = fixed_malloc(number, numberlength);
+	length = number_length(number);
+	str = fixed_malloc(number, length);
 	if (!str)
 		return (NULL);
 	if (number < 0)
 	{
 		str[0] = '-';
-		number_to_string(str + 1, number, numberlength);
+		number_to_string(str + 1, number, length);
 	}
 	else
-		number_to_string(str, number, numberlength);
+		number_to_string(str, number, length);
 	return (str);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:25:35 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/12/12 17:27:23 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 static int	ft_puthex(unsigned long long n, int fd, int *bytes, int *success)
 {
@@ -40,13 +40,13 @@ static int	ft_puthex(unsigned long long n, int fd, int *bytes, int *success)
 
 int	ft_puthexl_fd(unsigned long long n, int fd)
 {
-	int		byteswritten;
-	int		success;
+	int	bytes_written;
+	int	success;
 
-	byteswritten = 0;
+	bytes_written = 0;
 	success = 0;
 	if (n == 0)
 		return (ft_putchar_fd('0', fd));
 	else
-		return (ft_puthex(n, fd, &byteswritten, &success));
+		return (ft_puthex(n, fd, &bytes_written, &success));
 }

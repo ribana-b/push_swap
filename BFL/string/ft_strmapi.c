@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:33:44 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/16 18:04:08 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 char	*ft_strmapi(const char *str, char (*f)(unsigned int, char))
 {
-	char			*newstr;
-	unsigned int	counter;
+	char			*new_str;
+	unsigned int	index;
 
 	if (!str || !f)
 		return (NULL);
-	newstr = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
-	if (!newstr)
+	new_str = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
+	if (!new_str)
 		return (NULL);
-	counter = 0;
-	while (str[counter])
+	index = 0;
+	while (str[index])
 	{
-		newstr[counter] = f(counter, str[counter]);
-		counter++;
+		new_str[index] = f(index, str[index]);
+		index++;
 	}
-	newstr[counter] = '\0';
-	return (newstr);
+	new_str[index] = '\0';
+	return (new_str);
 }

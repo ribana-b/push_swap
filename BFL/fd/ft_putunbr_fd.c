@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:44:34 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/12/12 16:46:07 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 static int	ft_putunbr(unsigned int number, int fd, int *bytes, int *success)
 {
@@ -40,13 +40,13 @@ static int	ft_putunbr(unsigned int number, int fd, int *bytes, int *success)
 
 int	ft_putunbr_fd(unsigned int number, int fd)
 {
-	int		byteswritten;
-	int		success;
+	int	bytes_written;
+	int	success;
 
-	byteswritten = 0;
+	bytes_written = 0;
 	success = 0;
 	if (number == 0)
 		return (ft_putchar_fd('0', fd));
 	else
-		return (ft_putunbr(number, fd, &byteswritten, &success));
+		return (ft_putunbr(number, fd, &bytes_written, &success));
 }

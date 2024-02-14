@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:07:28 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/11 07:36:34 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 void	free_single_ptr(void *ptr)
 {
@@ -57,12 +57,15 @@ static void	free_triple_ptr(void *ptr)
 	*temp = NULL;
 }
 
-void	ft_free(void *ptr_reference, size_t asterisk_amount)
+void	*ft_free(void *ptr_reference, size_t asterisk_amount)
 {
+	if (!ptr_reference)
+		return (NULL);
 	if (asterisk_amount == 1)
 		free_single_ptr(ptr_reference);
 	else if (asterisk_amount == 2)
 		free_double_ptr(ptr_reference);
 	else if (asterisk_amount == 3)
 		free_triple_ptr(ptr_reference);
+	return (NULL);
 }

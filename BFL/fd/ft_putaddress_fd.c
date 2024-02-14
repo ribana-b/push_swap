@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putaddress_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:10:29 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/12/12 17:36:51 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 int	ft_putaddress_fd(unsigned long long ptr, int fd)
 {
 	int	success;
-	int	byteswritten;
+	int	bytes_written;
 
-	byteswritten = 0;
+	bytes_written = 0;
 	success = ft_putstr_fd("0x", fd);
 	if (success < 0)
 		return (-1);
-	byteswritten += success;
+	bytes_written += success;
 	success = ft_puthexl_fd(ptr, fd);
 	if (success < 0)
 		return (-1);
-	byteswritten += success;
-	return (byteswritten);
+	bytes_written += success;
+	return (bytes_written);
 }

@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:47:11 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/15 13:34:45 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 int	ft_atoi(const char *str)
 {
@@ -19,7 +19,7 @@ int	ft_atoi(const char *str)
 
 	if (!str)
 		return (0);
-	if (ft_strncmp(str, "-2147483648", 11) == 0)
+	if (!ft_strncmp(str, "-2147483648", 11))
 		return (-2147483648);
 	sign = 1;
 	while (*str == '\n' || *str == '\t' || *str == '\v' || *str == ' '

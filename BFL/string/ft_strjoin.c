@@ -6,27 +6,27 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:12:27 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/10/04 13:32:16 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 char	*ft_strjoin(const char *str, const char *str2)
 {
-	char	*newstr;
+	char	*new_str;
 	int		index;
 	int		index2;
 
 	index = ft_strlen(str);
 	index2 = ft_strlen(str2);
-	newstr = (char *)malloc((index + index2 + 1) * sizeof(char));
-	if (newstr == NULL)
+	new_str = (char *)malloc((index + index2 + 1) * sizeof(char));
+	if (!new_str)
 		return (NULL);
-	newstr[index + index2] = '\0';
+	new_str[index + index2] = '\0';
 	while (index2--)
-		newstr[index + index2] = str2[index2];
+		new_str[index + index2] = str2[index2];
 	while (index--)
-		newstr[index] = str[index];
-	return (newstr);
+		new_str[index] = str[index];
+	return (new_str);
 }

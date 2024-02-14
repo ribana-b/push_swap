@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:11:44 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/12/12 18:47:05 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
 static char	*ft_strjoin_gnl(char *str, const char *str2)
 {
-	char	*newstr;
-	int		i;
-	int		j;
+	char	*new_str;
+	int		index;
+	int		index2;
 
-	i = ft_strlen(str);
-	j = ft_strlen(str2);
-	newstr = (char *)malloc((i + j + 1) * sizeof(char));
-	if (!newstr)
+	index = ft_strlen(str);
+	index2 = ft_strlen(str2);
+	new_str = (char *)malloc((index + index2 + 1) * sizeof(char));
+	if (!new_str)
 		return (NULL);
-	newstr[i + j] = '\0';
-	while (j-- > 0)
-		newstr[i + j] = str2[j];
-	while (i-- > 0)
-		newstr[i] = str[i];
+	new_str[index + index2] = '\0';
+	while (index2-- > 0)
+		new_str[index + index2] = str2[index2];
+	while (index-- > 0)
+		new_str[index] = str[index];
 	free(str);
-	return (newstr);
+	return (new_str);
 }
 
 static char	*read_file(char *temp, int fd)
 {
 	char	*buffer;
-	int		bytesread;
+	int		bytes_read;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -43,17 +43,17 @@ static char	*read_file(char *temp, int fd)
 		free(temp);
 		return (NULL);
 	}
-	bytesread = 1;
-	while (bytesread > 0 && ft_strchr(temp, '\n') == NULL)
+	bytes_read = 1;
+	while (bytes_read > 0 && !ft_strchr(temp, '\n'))
 	{
-		bytesread = read(fd, buffer, BUFFER_SIZE);
-		if (bytesread < 0)
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read < 0)
 		{
 			free(buffer);
 			free(temp);
 			return (NULL);
 		}
-		buffer[bytesread] = '\0';
+		buffer[bytes_read] = '\0';
 		temp = ft_strjoin_gnl(temp, buffer);
 	}
 	free(buffer);
@@ -63,52 +63,52 @@ static char	*read_file(char *temp, int fd)
 static char	*read_temp(char *temp)
 {
 	char	*line;
-	int		i;
+	int		index;
 
-	if (!temp[0])
+	if (!(*temp))
 		return (NULL);
-	i = 0;
-	while (temp[i] != '\n' && temp[i] != '\0')
-		i++;
-	line = (char *)malloc((i + 2) * sizeof(char));
+	index = 0;
+	while (temp[index] != '\n' && temp[index] != '\0')
+		index++;
+	line = (char *)malloc((index + 2) * sizeof(char));
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (temp[i] != '\n' && temp[i] != '\0')
+	index = 0;
+	while (temp[index] != '\n' && temp[index] != '\0')
 	{
-		line[i] = temp[i];
-		i++;
+		line[index] = temp[index];
+		index++;
 	}
-	line[i] = temp[i];
-	line[i + 1] = '\0';
+	line[index] = temp[index];
+	line[index + 1] = '\0';
 	return (line);
 }
 
 static char	*read_temp_again(char *temp)
 {
-	char	*newtemp;
-	int		i;
-	int		j;
+	char	*new_temp;
+	int		index;
+	int		index2;
 
 	if (!temp)
 		return (NULL);
-	i = 0;
-	while (temp[i] != '\n' && temp[i] != '\0')
-		i++;
-	if (temp[i] == '\n')
-		i++;
-	j = 0;
-	while (temp[i + j] != '\0')
-		j++;
-	newtemp = (char *)malloc((j + 1) * sizeof(char));
-	if (!newtemp)
+	index = 0;
+	while (temp[index] != '\n' && temp[index] != '\0')
+		index++;
+	if (temp[index] == '\n')
+		index++;
+	index2 = 0;
+	while (temp[index + index2] != '\0')
+		index2++;
+	new_temp = (char *)malloc((index2 + 1) * sizeof(char));
+	if (!new_temp)
 		return (NULL);
-	j = -1;
-	while (temp[i + ++j] != '\0')
-		newtemp[j] = temp[i + j];
-	newtemp[j] = '\0';
+	index2 = -1;
+	while (temp[index + ++index2] != '\0')
+		new_temp[index2] = temp[index + index2];
+	new_temp[index2] = '\0';
 	free(temp);
-	return (newtemp);
+	return (new_temp);
 }
 
 char	*get_next_line(int fd)
@@ -128,7 +128,7 @@ char	*get_next_line(int fd)
 	if (!temp)
 		return (NULL);
 	line = read_temp(temp);
-	if (!temp[0])
+	if (!(*temp))
 	{
 		free(temp);
 		temp = NULL;

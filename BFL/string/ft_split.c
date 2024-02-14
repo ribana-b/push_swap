@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:32:56 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/11 06:12:11 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bfl.h"
+#include "bfl.h"
 
-static char	**free_split(char **split)
+static char	**free_split(char ***split)
 {
 	size_t	index;
 
 	index = 0;
-	while (split[index] != NULL)
-		free(split[index++]);
-	free(split);
+	while ((*split)[index] != NULL)
+	{
+		free((*split)[index]);
+		(*split)[index++] = NULL;
+	}
+	free(*split);
+	*split = NULL;
 	return (NULL);
 }
 
@@ -46,53 +50,53 @@ static size_t	count_word(const char *str, char delimit)
 	return (counter);
 }
 
-static char	*get_word(const char *str, char delimit, size_t *j)
+static char	*get_word(const char *str, char delimit, size_t *index)
 {
 	char	*word;
-	size_t	index;
+	size_t	index2;
 
-	index = 0;
-	while (str[*j + index] != '\0' && str[*j + index] != delimit)
-		index++;
-	word = (char *)malloc((index + 1) * sizeof(char));
-	if (word == NULL)
+	index2 = 0;
+	while (str[*index + index2] != '\0' && str[*index + index2] != delimit)
+		index2++;
+	word = (char *)malloc((index2 + 1) * sizeof(char));
+	if (!word)
 		return (NULL);
-	index = 0;
-	while (str[*j] != '\0' && str[*j] != delimit)
+	index2 = 0;
+	while (str[*index] != '\0' && str[*index] != delimit)
 	{
-		word[index] = str[*j];
-		index++;
-		(*j)++;
+		word[index2] = str[*index];
+		index2++;
+		(*index)++;
 	}
-	word[index] = '\0';
+	word[index2] = '\0';
 	return (word);
 }
 
 char	**ft_split(const char *str, char delimit)
 {
 	char	**split;
-	size_t	i;
-	size_t	j;
+	size_t	split_index;
+	size_t	str_index;
 
 	if (!str)
 		return (NULL);
 	split = (char **)malloc((count_word(str, delimit) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (str[j] != '\0')
+	split_index = 0;
+	str_index = 0;
+	while (str[str_index] != '\0')
 	{
-		if (str[j] == delimit)
-			j++;
+		if (str[str_index] == delimit)
+			str_index++;
 		else
 		{
-			split[i] = get_word(str, delimit, &j);
-			if (split[i] == NULL)
-				return (free_split(split));
-			i++;
+			split[split_index] = get_word(str, delimit, &str_index);
+			if (!split[split_index])
+				return (free_split(&split));
+			split_index++;
 		}
 	}
-	split[i] = NULL;
+	split[split_index] = NULL;
 	return (split);
 }

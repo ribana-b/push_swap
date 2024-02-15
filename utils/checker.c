@@ -6,13 +6,13 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:32 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 16:22:55 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:20:46 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	check_sorted(t_stack *stacka)
+t_bool	is_sorted(t_stack *stacka)
 {
 	t_stack	*temp;
 

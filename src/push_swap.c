@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 15:58:40 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:34:11 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ int	stack_len(t_stack *stack)
 	return (i);
 }
 
-int	push_swap(t_stack *stack_a)
+int	push_swap(t_stack **stack_a)
 {
-	if (!stack_a)
+	if (!(*stack_a))
 		return (1);
+	sort_stack(stack_a);
 	return (0);
 }
 
@@ -49,14 +50,14 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		return (2);
 	}
-	stacka = fill_stack(parsed_args, 0);
+	stacka = fill_stack(parsed_args, 1);
 	if (!stacka)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (3);
 	}
 	ft_free(&parsed_args, 3);
-	push_swap(stacka);
+	push_swap(&stacka);
 	print_stack(stacka);
 	destroy_stack(&stacka);
 	return (0);

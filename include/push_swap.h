@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/01/13 14:08:32 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:34:00 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_stack
 
 t_stack	*create_stack(int index, int value);
 void	destroy_stack(t_stack **stack);
+t_stack	*fill_stack(char ***parsed_args, int index);
 
 // <-- Movements --> //
 
@@ -68,10 +69,13 @@ void	sort_stack(t_stack **stacka);
 
 // <-- Checker --> //
 
-t_bool	check_sorted(t_stack *stacka);
+t_bool	is_sorted(t_stack *stacka);
 
+// <-- Parser --> //
+
+char	***parse_args(int argc, char **argv);
 
 // <-- Main --> //
-int	stack_len(t_stack *stack);
+int		stack_len(t_stack *stack);
 
 #endif

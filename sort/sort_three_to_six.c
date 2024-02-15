@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:30 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 16:28:36 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:35:01 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	sort_three(t_stack **stack)
 {
-	if (!(*stack) || !(*stack)->next || !(*stack)->next->next)
+	if (!(*stack) || !(*stack)->next || !(*stack)->next->next
+		|| is_sorted(*stack))
 		return ;
 	if ((*stack)->value > (*stack)->next->value
 		&& (*stack)->value > (*stack)->next->next->value)
@@ -38,10 +39,12 @@ void	sort_stack(t_stack **stacka)
 {
 	if (!(*stacka))
 		return ;
-	if (stack_len(*stacka) == 2)
-		if (!check_sorted(*stacka))
+	else if (stack_len(*stacka) == 2)
+	{
+		if (!is_sorted(*stacka))
 			swap_stack_a(*stacka);
-	if (stack_len(*stacka) == 3)
+	}
+	else if (stack_len(*stacka) == 3)
 		sort_three(stacka);
 	return ;
 }

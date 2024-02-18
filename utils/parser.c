@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/15 11:39:48 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:49:06 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_bool	is_repeated(long number)
 {
-	static long	dump[DUMP_LIMIT];
+	static long		dump[DUMP_LIMIT];
 	static size_t	limit;
 	size_t			index;
 
@@ -39,7 +39,7 @@ static t_bool	is_valid(char **parsed_args)
 	while (parsed_args[index])
 	{
 		number = ft_atol(parsed_args[index]);
-		if (number < -2147483648 || number > 2147483647 || is_repeated(number))
+		if (number < MIN_INT || number > MAX_INT || is_repeated(number))
 			return (false);
 		index++;
 	}

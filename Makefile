@@ -37,66 +37,112 @@ RESET = \033[0m
 NAME = push_swap
 
 # <-- Compilation Command --> #
-CC = gcc
+CC = cc
 
 # <-- Compilation Flags --> #
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
-# <-- Remove Command -->#
-RM = rm -f
+# <-- Remove Command --> #
+RM = rm -rf
+
+# <-- Include Library --> #
+INCLUDE = -I ./include
 
 # <-- Directories --> #
+BFL_DIR = BFL/
 SRC_DIR = src/
 UTILS_DIR = utils/
+MOVEMENT_DIR = movement/
+OBJ_DIR = obj/
+
+DEBUG_DIR = debug/
+SORT_DIR = sort/
 
 # <-- Files --> #
-SRC_FILES	=	push_swap.c
-UTILS_FILES	=	stack_manipulation.c \
-				swap_stack.c \
-				push_stack.c \
+SRC_FILES = push_swap.c
+UTILS_FILES = checker.c \
+				stack_manipulation.c \
+				parser.c
+MOVEMENT_FILES = push_stack.c \
+				reverse_rotate_stack.c \
 				rotate_stack.c \
-				reverse_rotate_stack.c
+				swap_stack.c
+
+DEBUG_FILES = debug.c
+SORT_FILES = sort_three_to_six.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_FILES))
+MOVEMENT = $(addprefix $(MOVEMENT_DIR), $(MOVEMENT_FILES))
+
+DEBUG = $(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
+SORT = $(addprefix $(SORT_DIR), $(SORT_FILES))
 
 # <-- Objects --> #
-OBJ_SRC = $(SRC:.c=.o)
-OBJ_UTILS = $(UTILS:.c=.o)
+OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
+		$(patsubst $(UTILS_DIR)%.c, $(OBJ_DIR)%.o, $(UTILS)) \
+		$(patsubst $(DEBUG_DIR)%.c, $(OBJ_DIR)%.o, $(DEBUG)) \
+		$(patsubst $(SORT_DIR)%.c, $(OBJ_DIR)%.o, $(SORT)) \
+		$(patsubst $(MOVEMENT_DIR)%.c, $(OBJ_DIR)%.o, $(MOVEMENT))
 
 # ========================================================================== #
 
 # <-- Main Target --> #
 all: $(NAME)
 
-# <--Library Creation--> #
-$(NAME): $(OBJ_SRC) $(OBJ_UTILS)
-	@echo "$(T_YELLOW)$(BOLD)Objects created successfully$(RESET)"
-	$(CC) $(CFLAGS) $(OBJ_SRC) $(OBJ_UTILS) -o $(NAME)
-	@echo "$(T_YELLOW)$(BOLD)$(NAME) created successfully$(RESET)"
+# <-- Program/Library Creation --> #
+$(NAME): $(OBJ_DIR) $(OBJ)
+	@make -s -C $(BFL_DIR)
+	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
+	@$(CC) $(OBJ) $(BFL_DIR)/bfl.a -o $(NAME)
+	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
+
+# <-- Object Directory Creation --> #
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 # <-- Objects Creation --> #
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(UTILS_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(DEBUG_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(SORT_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(MOVEMENT_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 # <-- Objects Destruction --> #
 clean:
-	$(RM) $(OBJ_SRC) $(OBJ_UTILS)
-	@echo "$(T_RED)$(BOLD)Objects destroyed successfully$(RESET)"
+	@$(RM) $(OBJ_DIR)
+	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
-# <- Clean Execution + push_swap Destruction -> #
+# <-- Clean Execution + push_swap Destruction --> #
 fclean: clean
-	$(RM) $(NAME)
-	@echo "$(T_RED)$(BOLD)$(NAME) destroyed successfully$(RESET)"
+	@$(RM) $(NAME)
+	@make fclean -s -C $(BFL_DIR)
+	@echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
-# <- Fclean Execution + All Execution -> #
+# <-- Fclean Execution + All Execution --> #
 re: fclean all
 
-run_leaks: re
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all -s ./$(NAME)
-
-# <- Targets Declaration -> #
-.PHONY = all clean fclean re run_leaks
+# <-- Targets Declaration --> #
+.PHONY = all clean fclean re colortesting
 
 # ========================================================================== #

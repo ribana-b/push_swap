@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 01:45:23 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/15 02:27:35 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:50:52 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 void	rotate_stack_a(t_stack **stacka)
 {

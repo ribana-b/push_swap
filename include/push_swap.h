@@ -3,24 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+#             */
-/*   Updated: 2023/11/15 02:30:36 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:11:54 by ribana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-/* <--Defines Section--> */
+/* <-- Defines Section --> */
 
-/* <--Libraries Section--> */
+# define DUMP_LIMIT 1000000
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
+/* <-- Libraries Section --> */
+
+# include "../BFL/include/bfl.h"
 # include <stdio.h>
 # include <stdlib.h>
 
-/* <--Structs Section--> */
+/* <-- Typedef Section --> */
+
+typedef enum e_bool
+{
+	false,
+	true
+}	t_bool;
 
 typedef struct s_stack
 {
@@ -29,16 +40,15 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-/* <--Functions Section--> */
+/* <-- Functions Section --> */
 
-
-// <--Stack manipulation-->//
+// <-- Stack manipulation -->//
 
 t_stack	*create_stack(int index, int value);
 void	destroy_stack(t_stack **stack);
+t_stack	*fill_stack(char ***parsed_args, int index);
 
-
-// <--Movements--> //
+// <-- Movements --> //
 
 void	swap_stack_a(t_stack *stacka);
 void	swap_stack_b(t_stack *stackb);
@@ -51,5 +61,25 @@ void	rotate_both_stacks(t_stack **stacka, t_stack **stackb);
 void	reverse_rotate_stack_a(t_stack **stacka);
 void	reverse_rotate_stack_b(t_stack **stacka);
 void	reverse_rotate_both_stacks(t_stack **stacka, t_stack **stackb);
+
+// <-- Debug --> //
+
+void	print_stack(t_stack *stack);
+
+// <-- Sort --> //
+
+void	sort_three(t_stack **stack);
+void	sort_stack(t_stack **stacka);
+
+// <-- Checker --> //
+
+t_bool	is_sorted(t_stack *stacka);
+
+// <-- Parser --> //
+
+char	***parse_args(int argc, char **argv);
+
+// <-- Main --> //
+int		stack_len(t_stack *stack);
 
 #endif

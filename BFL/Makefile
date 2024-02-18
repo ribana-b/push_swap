@@ -144,7 +144,7 @@ all: $(NAME)
 
 # <-- Library Creation --> #
 $(NAME): $(OBJ_DIR) $(OBJ)
-	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_GREEN)created successfully$(RESET)"
+	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)BFL Objects $(RESET)$(T_GREEN)created successfully$(RESET)"
 	@ar rcs $@ $(OBJ)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully$(RESET)"
 

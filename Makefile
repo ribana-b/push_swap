@@ -94,7 +94,7 @@ all: $(NAME)
 # <-- Program/Library Creation --> #
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s -C $(BFL_DIR)
-	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
+	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
 	@$(CC) $(OBJ) $(BFL_DIR)/bfl.a -o $(NAME)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 

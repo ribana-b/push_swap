@@ -6,19 +6,19 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:32 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 19:20:46 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:11:12 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	is_sorted(t_stack *stacka)
+t_bool	is_sorted(t_stack *stack)
 {
 	t_stack	*temp;
 
-	if (!stacka)
+	if (!stack)
 		return (false);
-	temp = stacka;
+	temp = stack;
 	while (temp->next)
 	{
 		if (temp->value > temp->next->value)

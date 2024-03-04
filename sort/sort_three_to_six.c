@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:30 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 21:35:01 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:21 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	sort_three(t_stack **stack)
 	return ;
 }
 
-void	sort_stack(t_stack **stacka)
+void	sort_stack(t_stack **stack_a)
 {
-	if (!(*stacka))
+	if (!(*stack_a))
 		return ;
-	else if (stack_len(*stacka) == 2)
+	else if (stack_len(*stack_a) == 2)
 	{
-		if (!is_sorted(*stacka))
-			swap_stack_a(*stacka);
+		if (!is_sorted(*stack_a))
+			swap_stack_a(*stack_a);
 	}
-	else if (stack_len(*stacka) == 3)
-		sort_three(stacka);
+	else if (stack_len(*stack_a) == 3)
+		sort_three(stack_a);
 	return ;
 }

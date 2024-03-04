@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 21:34:11 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:13:42 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	push_swap(t_stack **stack_a)
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stacka;
+	t_stack	*stack_a;
 	char	***parsed_args;
 
 	if (argc < 2)
@@ -50,22 +50,22 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		return (2);
 	}
-	stacka = fill_stack(parsed_args, 1);
-	if (!stacka)
+	stack_a = fill_stack(parsed_args, 1);
+	if (!stack_a)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (3);
 	}
 	ft_free(&parsed_args, 3);
-	push_swap(&stacka);
-	print_stack(stacka);
-	destroy_stack(&stacka);
+	push_swap(&stack_a);
+	print_stack(stack_a);
+	destroy_stack(&stack_a);
 	return (0);
 }
 
 // int	main(int argc, char **argv)
 // {
-// 	t_stack	*stacka;
+// 	t_stack	*stack_a;
 // 	t_stack *temp;
 
 // 	if (argc < 2)
@@ -82,23 +82,23 @@ int	main(int argc, char **argv)
 // 					{3, 1, 2},
 // 					{3, 2, 1}
 // 	};
-// 	stacka = create_stack(0, arr[index][0]);
-// 	if (!stacka)
+// 	stack_a = create_stack(0, arr[index][0]);
+// 	if (!stack_a)
 // 		return (1);
-// 	temp = stacka;
+// 	temp = stack_a;
 // 	for (int i = 1; i < 3; i++)
 // 	{
 // 		temp->next = create_stack(i, arr[index][i]);
 // 		if (!temp)
 // 		{
-// 			destroy_stack(&stacka);
+// 			destroy_stack(&stack_a);
 // 			return (1);
 // 		}
 // 		temp = temp->next;
 // 	}
-// 	print_stack(stacka);
-// 	push_swap(&stacka);
-// 	print_stack(stacka);
-// 	destroy_stack(&stacka);
+// 	print_stack(stack_a);
+// 	push_swap(&stack_a);
+// 	print_stack(stack_a);
+// 	destroy_stack(&stack_a);
 // 	return (0);
 // }

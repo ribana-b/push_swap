@@ -6,20 +6,20 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 02:10:32 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 14:50:57 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:39:21 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate_stack_a(t_stack **stacka)
+void	reverse_rotate_stack_a(t_stack **stack_a)
 {
 	t_stack	*last;
 	t_stack	*temp;
 
-	if (!(*stacka) || !((*stacka)->next))
+	if (!(*stack_a) || !((*stack_a)->next))
 		return ;
-	last = *stacka;
+	last = *stack_a;
 	temp = NULL;
 	while (last->next)
 	{
@@ -27,18 +27,18 @@ void	reverse_rotate_stack_a(t_stack **stacka)
 		last = last->next;
 	}
 	temp->next = NULL;
-	last->next = *stacka;
-	*stacka = last;
+	last->next = *stack_a;
+	*stack_a = last;
 }
 
-void	reverse_rotate_stack_b(t_stack **stackb)
+void	reverse_rotate_stack_b(t_stack **stack_b)
 {
 	t_stack	*last;
 	t_stack	*temp;
 
-	if (!(*stackb) || !((*stackb)->next))
+	if (!(*stack_b) || !((*stack_b)->next))
 		return ;
-	last = *stackb;
+	last = *stack_b;
 	temp = NULL;
 	while (last->next)
 	{
@@ -46,13 +46,13 @@ void	reverse_rotate_stack_b(t_stack **stackb)
 		last = last->next;
 	}
 	temp->next = NULL;
-	last->next = *stackb;
-	*stackb = last;
+	last->next = *stack_b;
+	*stack_b = last;
 }
 
-void	reverse_rotate_both_stacks(t_stack **stacka, t_stack **stackb)
+void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b)
 {
-	reverse_rotate_stack_a(stacka);
-	reverse_rotate_stack_b(stackb);
+	reverse_rotate_stack_a(stack_a);
+	reverse_rotate_stack_b(stack_b);
 	return ;
 }

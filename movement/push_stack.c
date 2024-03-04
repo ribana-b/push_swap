@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 14:51:01 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:14:16 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,32 @@ static void	push_index_minus_minus(t_stack *stack)
 	return ;
 }
 
-void	push_to_stack_a(t_stack **stacka, t_stack **stackb)
+void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
 
-	if (!(*stackb))
+	if (!(*stack_b))
 		return ;
-	temp = *stackb;
-	*stackb = (*stackb)->next;
-	temp->next = *stacka;
-	*stacka = temp;
-	push_index_plus_plus((*stacka)->next);
-	push_index_minus_minus((*stackb));
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	temp->next = *stack_a;
+	*stack_a = temp;
+	push_index_plus_plus((*stack_a)->next);
+	push_index_minus_minus((*stack_b));
 	return ;
 }
 
-void	push_to_stack_b(t_stack **stacka, t_stack **stackb)
+void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
 
-	if (!(*stacka) || !((*stacka)->next))
+	if (!(*stack_a) || !((*stack_a)->next))
 		return ;
-	temp = *stacka;
-	*stacka = (*stacka)->next;
-	temp->next = *stackb;
-	*stackb = temp;
-	push_index_plus_plus((*stackb)->next);
-	push_index_minus_minus((*stacka));
+	temp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	temp->next = *stack_b;
+	*stack_b = temp;
+	push_index_plus_plus((*stack_b)->next);
+	push_index_minus_minus((*stack_a));
 	return ;
 }

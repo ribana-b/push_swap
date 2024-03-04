@@ -6,39 +6,39 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:47:07 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 14:50:48 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:13 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack_a(t_stack *stacka)
+void	swap_stack_a(t_stack *stack_a)
 {
 	int	temp;
 
-	if (!stacka || !stacka->next)
+	if (!stack_a || !stack_a->next)
 		return ;
-	temp = stacka->value;
-	stacka->value = stacka->next->value;
-	stacka->next->value = temp;
+	temp = stack_a->value;
+	stack_a->value = stack_a->next->value;
+	stack_a->next->value = temp;
 	return ;
 }
 
-void	swap_stack_b(t_stack *stackb)
+void	swap_stack_b(t_stack *stack_b)
 {
 	int	temp;
 
-	if (!stackb || !stackb->next)
+	if (!stack_b || !stack_b->next)
 		return ;
-	temp = stackb->value;
-	stackb->value = stackb->next->value;
-	stackb->next->value = temp;
+	temp = stack_b->value;
+	stack_b->value = stack_b->next->value;
+	stack_b->next->value = temp;
 	return ;
 }
 
-void	swap_both_stacks(t_stack *stacka, t_stack *stackb)
+void	swap_both_stacks(t_stack *stack_a, t_stack *stack_b)
 {
-	swap_stack_a(stacka);
-	swap_stack_b(stackb);
+	swap_stack_a(stack_a);
+	swap_stack_b(stack_b);
 	return ;
 }

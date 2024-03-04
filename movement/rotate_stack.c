@@ -6,22 +6,22 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 01:45:23 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 14:50:52 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:05 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_stack_a(t_stack **stacka)
+void	rotate_stack_a(t_stack **stack_a)
 {
 	t_stack	*first;
 	t_stack	*temp;
 
-	if (!(*stacka) || !((*stacka)->next))
+	if (!(*stack_a) || !((*stack_a)->next))
 		return ;
-	first = *stacka;
-	*stacka = (*stacka)->next;
-	temp = *stacka;
+	first = *stack_a;
+	*stack_a = (*stack_a)->next;
+	temp = *stack_a;
 	while (temp->next)
 		temp = temp->next;
 	temp->next = first;
@@ -29,16 +29,16 @@ void	rotate_stack_a(t_stack **stacka)
 	return ;
 }
 
-void	rotate_stack_b(t_stack **stackb)
+void	rotate_stack_b(t_stack **stack_b)
 {
 	t_stack	*first;
 	t_stack	*temp;
 
-	if (!(*stackb) || !((*stackb)->next))
+	if (!(*stack_b) || !((*stack_b)->next))
 		return ;
-	first = *stackb;
-	*stackb = (*stackb)->next;
-	temp = *stackb;
+	first = *stack_b;
+	*stack_b = (*stack_b)->next;
+	temp = *stack_b;
 	while (temp->next)
 		temp = temp->next;
 	temp->next = first;
@@ -46,9 +46,9 @@ void	rotate_stack_b(t_stack **stackb)
 	return ;
 }
 
-void	rotate_both_stacks(t_stack **stacka, t_stack **stackb)
+void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b)
 {
-	rotate_stack_a(stacka);
-	rotate_stack_b(stackb);
+	rotate_stack_a(stack_a);
+	rotate_stack_b(stack_b);
 	return ;
 }

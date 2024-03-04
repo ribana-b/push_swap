@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/15 12:11:54 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:12:59 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ t_stack	*fill_stack(char ***parsed_args, int index);
 
 // <-- Movements --> //
 
-void	swap_stack_a(t_stack *stacka);
-void	swap_stack_b(t_stack *stackb);
-void	swap_both_stacks(t_stack *stacka, t_stack *stackb);
-void	push_to_stack_b(t_stack **stacka, t_stack **stackb);
-void	push_to_stack_a(t_stack **stacka, t_stack **stackb);
-void	rotate_stack_a(t_stack **stacka);
-void	rotate_stack_b(t_stack **stackb);
-void	rotate_both_stacks(t_stack **stacka, t_stack **stackb);
-void	reverse_rotate_stack_a(t_stack **stacka);
-void	reverse_rotate_stack_b(t_stack **stacka);
-void	reverse_rotate_both_stacks(t_stack **stacka, t_stack **stackb);
+void	swap_stack_a(t_stack *stack_a);
+void	swap_stack_b(t_stack *stack_b);
+void	swap_both_stacks(t_stack *stack_a, t_stack *stack_b);
+void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b);
+void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b);
+void	rotate_stack_a(t_stack **stack_a);
+void	rotate_stack_b(t_stack **stack_b);
+void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b);
+void	reverse_rotate_stack_a(t_stack **stack_a);
+void	reverse_rotate_stack_b(t_stack **stack_a);
+void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b);
 
 // <-- Debug --> //
 
@@ -69,11 +69,11 @@ void	print_stack(t_stack *stack);
 // <-- Sort --> //
 
 void	sort_three(t_stack **stack);
-void	sort_stack(t_stack **stacka);
+void	sort_stack(t_stack **stack);
 
 // <-- Checker --> //
 
-t_bool	is_sorted(t_stack *stacka);
+t_bool	is_sorted(t_stack *stack);
 
 // <-- Parser --> //
 

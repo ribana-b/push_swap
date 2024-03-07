@@ -6,13 +6,13 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/15 11:49:06 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/07 07:55:24 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_bool	is_repeated(long number)
+static t_bool	ft_isrepeated(long number)
 {
 	static long		dump[DUMP_LIMIT];
 	static size_t	limit;
@@ -30,7 +30,7 @@ static t_bool	is_repeated(long number)
 	return (false);
 }
 
-static t_bool	is_valid(char **parsed_args)
+static t_bool	ft_isvalid(char **parsed_args)
 {
 	size_t	index;
 	long	number;
@@ -39,7 +39,7 @@ static t_bool	is_valid(char **parsed_args)
 	while (parsed_args[index])
 	{
 		number = ft_atol(parsed_args[index]);
-		if (number < MIN_INT || number > MAX_INT || is_repeated(number))
+		if (number < MIN_INT || number > MAX_INT || ft_isrepeated(number))
 			return (false);
 		index++;
 	}
@@ -62,7 +62,7 @@ char	***parse_args(int argc, char **argv)
 		parsed_args[index] = ft_split(argv[index + 1], ' ');
 		if (!parsed_args[index])
 			return (ft_free(&parsed_args, 3));
-		if (!is_valid(parsed_args[index]))
+		if (!ft_isvalid(parsed_args[index]))
 			return (ft_free(&parsed_args, 3));
 		index++;
 	}

@@ -30,6 +30,26 @@ static t_bool	ft_isrepeated(long number)
 	return (false);
 }
 
+static t_bool	ft_isnumber(char *parsed_args)
+{
+	size_t	index;
+	size_t	counter;
+
+	index = 0;
+	counter = 0;
+	while (parsed_args[index])
+	{
+		if (ft_isdigit(parsed_args[index]))
+			++counter;
+		else if (parsed_args[index] != '-' && parsed_args[index] != '+')
+			return (false);
+		++index;
+	}
+	if (!counter)
+		return (false);
+	return (true);
+}
+
 static t_bool	ft_isvalid(char **parsed_args)
 {
 	size_t	index;
@@ -38,6 +58,8 @@ static t_bool	ft_isvalid(char **parsed_args)
 	index = 0;
 	while (parsed_args[index])
 	{
+		if (!ft_isnumber(parsed_args[index]))
+			return (false);
 		number = ft_atol(parsed_args[index]);
 		if (number < MIN_INT || number > MAX_INT || ft_isrepeated(number))
 			return (false);

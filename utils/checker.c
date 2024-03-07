@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+t_bool	is_reverse_sorted(t_stack *stack)
+{
+	t_stack	*temp;
+	if (!stack)
+		return (false);
+	temp = stack;
+	while (temp->next)
+	{
+		if (temp->value < temp->next->value)
+			return (false);
+		temp = temp->next;
+	}
+	return (true);
+}
+
 t_bool	is_sorted(t_stack *stack)
 {
 	t_stack	*temp;

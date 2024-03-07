@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/03/04 15:12:59 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/07 08:08:52 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	sort_stack(t_stack **stack);
 // <-- Checker --> //
 
 t_bool	is_sorted(t_stack *stack);
+t_bool	is_reverse_sorted(t_stack *stack);
 
 // <-- Parser --> //
 

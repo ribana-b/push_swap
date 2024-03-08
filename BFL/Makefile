@@ -34,7 +34,7 @@ RESET = \033[0m
 # ========================================================================== #
 
 # <-- Library's Name --> #
-NAME = bfl.a
+NAME = libbfl.a
 
 # <-- Compilation Command --> #
 CC = cc

@@ -46,7 +46,10 @@ CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 # <-- Include Library --> #
-INCLUDE = -I ./include
+INCLUDE = -I ./include -I $(BFL_DIR)include
+
+# <-- Link BFL --> #
+LIBRARY = -L./BFL/ -lbfl
 
 # <-- Directories --> #
 BFL_DIR = BFL/
@@ -88,17 +91,18 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 
 # ========================================================================== #
 
-# <-- Main Target --> #
+# <-- Project's Target --> #
 all: $(NAME)
 
 # <-- Program/Library Creation --> #
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s -C $(BFL_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
-	@$(CC) $(OBJ) $(BFL_DIR)/bfl.a -o $(NAME)
+	@$(CC) -o $(NAME) $(OBJ) $(INCLUDE) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
+endif
 
-# <-- Object Directory Creation --> #
+# <-- Objects Directory Creation --> #
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 

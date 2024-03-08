@@ -21,7 +21,7 @@
 
 /* <-- Libraries Section --> */
 
-# include "../BFL/include/bfl.h"
+# include "bfl.h"
 # include <stdio.h>
 # include <stdlib.h>
 

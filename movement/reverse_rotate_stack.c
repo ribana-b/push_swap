@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 02:10:32 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:32:14 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 20:55:55 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b)
 {
 	reverse_rotate_stack_a(stack_a);
 	reverse_rotate_stack_b(stack_b);
-	return ;
 }

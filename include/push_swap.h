@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:29:58 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 14:14:13 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 /* <-- Defines Section --> */
 
-# define DUMP_LIMIT 1000000
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 

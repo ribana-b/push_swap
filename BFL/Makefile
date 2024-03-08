@@ -40,7 +40,11 @@ NAME = libbfl.a
 CC = cc
 
 # <-- Compilation Flags --> #
-CFLAGS = -Wall -Wextra -Werror
+ifdef WITH_DEBUG
+	CFLAGS = -Wall -Wextra -Werror -ggdb
+else
+	CFLAGS = -Wall -Wextra -Werror
+endif
 
 # <-- Include Library -->#
 INCLUDE = -I ./include
@@ -205,6 +209,10 @@ fclean: clean
 
 # <-- Fclean Execution + All Execution --> #
 re: fclean all
+
+# <-- Fclean Execution + All Execution --> #
+debug: fclean
+	@make WITH_DEBUG=1
 
 # <-- Testers -->
 test: all

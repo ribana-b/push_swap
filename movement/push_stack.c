@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 20:55:38 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 20:59:42 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	push_index_plus_plus(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		temp->index++;
+		++temp->index;
 		temp = temp->next;
 	}
 }
@@ -35,7 +35,7 @@ static void	push_index_minus_minus(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		temp->index--;
+		--temp->index;
 		temp = temp->next;
 	}
 }

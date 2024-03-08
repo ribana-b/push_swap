@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:48:46 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:32:45 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 21:03:43 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	fill_stack_aux(t_stack **temp, char ***parsed_args, int *index,
 		if (!(*temp)->next)
 			return ;
 		*temp = (*temp)->next;
-		index[1]++;
+		++index[1];
 	}
 }
 
@@ -77,7 +77,7 @@ t_stack	*fill_stack(char ***parsed_args, int stack_index)
 			destroy_stack(&stack);
 			return (NULL);
 		}
-		index[0]++;
+		++index[0];
 	}
 	temp = NULL;
 	return (stack);

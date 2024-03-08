@@ -114,6 +114,7 @@ char	***parse_args(int argc, char **argv)
 	index = 0;
 	while (index < argc - 1)
 	{
+		parsed_args[index + 1] = NULL;
 		parsed_args[index] = ft_split(argv[index + 1], ' ');
 		if (!parsed_args[index])
 			return (ft_free(&parsed_args, 3));
@@ -121,6 +122,5 @@ char	***parse_args(int argc, char **argv)
 			return (ft_free(&parsed_args, 3));
 		++index;
 	}
-	parsed_args[index] = NULL;
 	return (parsed_args);
 }

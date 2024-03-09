@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 21:00:04 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/09 06:11:25 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int argc, char **argv)
 	stack_a = fill_stack(parsed_args, 1);
 	if (!stack_a)
 	{
+		ft_free(&parsed_args, 3);
 		ft_putstr_fd("Error\n", 2);
 		return (3);
 	}

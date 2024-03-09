@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:30 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:30:47 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 20:56:39 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	sort_three(t_stack **stack)
 	}
 	else
 		swap_stack_a(*stack);
-	return ;
 }
 
 void	sort_stack(t_stack **stack_a)
@@ -46,5 +45,4 @@ void	sort_stack(t_stack **stack_a)
 	}
 	else if (stack_len(*stack_a) == 3)
 		sort_three(stack_a);
-	return ;
 }

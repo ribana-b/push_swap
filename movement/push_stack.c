@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:31:29 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 20:59:42 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ static void	push_index_plus_plus(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		temp->index++;
+		++temp->index;
 		temp = temp->next;
 	}
-	return ;
 }
 
 static void	push_index_minus_minus(t_stack *stack)
@@ -36,10 +35,9 @@ static void	push_index_minus_minus(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		temp->index--;
+		--temp->index;
 		temp = temp->next;
 	}
-	return ;
 }
 
 void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b)
@@ -54,7 +52,6 @@ void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = temp;
 	push_index_plus_plus((*stack_a)->next);
 	push_index_minus_minus((*stack_b));
-	return ;
 }
 
 void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b)
@@ -69,5 +66,4 @@ void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = temp;
 	push_index_plus_plus((*stack_b)->next);
 	push_index_minus_minus((*stack_a));
-	return ;
 }

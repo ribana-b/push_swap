@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:19:38 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/08 21:00:04 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	stack_len(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		i++;
+		++i;
 		temp = temp->next;
 	}
 	return (i);

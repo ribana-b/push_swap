@@ -33,20 +33,27 @@ RESET = \033[0m
 
 # ========================================================================== #
 
-# <-- Library's Name --> #
+# <-- Output Name --> #
 NAME = push_swap
 
 # <-- Compilation Command --> #
 CC = cc
 
 # <-- Compilation Flags --> #
-CFLAGS = -Wall -Wextra -Werror -g
+ifdef WITH_DEBUG
+	CFLAGS = -Wall -Wextra -Werror -ggdb
+else
+	CFLAGS = -Wall -Wextra -Werror
+endif
 
 # <-- Remove Command --> #
 RM = rm -rf
 
 # <-- Include Library --> #
-INCLUDE = -I ./include
+INCLUDE = -I ./include -I $(BFL_DIR)include
+
+# <-- Link BFL --> #
+LIBRARY = -L./BFL/ -lbfl
 
 # <-- Directories --> #
 BFL_DIR = BFL/
@@ -88,17 +95,25 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 
 # ========================================================================== #
 
-# <-- Main Target --> #
+# <-- Project's Target --> #
 all: $(NAME)
 
 # <-- Program/Library Creation --> #
+ifdef WITH_DEBUG
+$(NAME): $(OBJ_DIR) $(OBJ)
+	@make -s debug -C $(BFL_DIR)
+	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
+	@$(CC) -o $(NAME) $(OBJ) $(INCLUDE) $(LIBRARY)
+	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
+else
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s -C $(BFL_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
-	@$(CC) $(OBJ) $(BFL_DIR)/bfl.a -o $(NAME)
+	@$(CC) -o $(NAME) $(OBJ) $(INCLUDE) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
+endif
 
-# <-- Object Directory Creation --> #
+# <-- Objects Directory Creation --> #
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
@@ -142,7 +157,11 @@ fclean: clean
 # <-- Fclean Execution + All Execution --> #
 re: fclean all
 
+# <-- Debug --> #
+debug: fclean
+	@make -s WITH_DEBUG=1
+
 # <-- Targets Declaration --> #
-.PHONY = all clean fclean re colortesting
+.PHONY = all clean debug fclean re
 
 # ========================================================================== #

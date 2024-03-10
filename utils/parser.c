@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/09 23:27:33 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/10 10:38:30 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_bool	ft_isnumber(char *parsed_args)
 		else if (parsed_args[index] != '-' && parsed_args[index] != '+')
 			return (false);
 		else if ((parsed_args[index] == '-' || parsed_args[index] == '+')
-				&& counter != 0)
+			&& counter != 0)
 			return (false);
 		++index;
 	}

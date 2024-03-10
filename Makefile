@@ -66,7 +66,7 @@ DEBUG_DIR = src/debug/
 SORT_DIR = src/sort/
 
 # <-- Files --> #
-SRC_FILES = push_swap.c
+SRC_FILES = main.c
 UTILS_FILES = checker.c \
 				stack_manipulation.c \
 				parser.c

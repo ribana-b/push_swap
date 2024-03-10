@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/09 06:11:25 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/10 19:37:48 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,18 @@ int	main(int argc, char **argv)
 	parsed_args = parse_args(argc, argv);
 	if (!parsed_args)
 	{
-		ft_putstr_fd("Error\n", 2);
+		write(2, "Error\n", 6);
 		return (2);
 	}
 	stack_a = fill_stack(parsed_args, 1);
 	if (!stack_a)
 	{
 		ft_free(&parsed_args, 3);
-		ft_putstr_fd("Error\n", 2);
+		write(2, "Error\n", 6);
 		return (3);
 	}
 	ft_free(&parsed_args, 3);
 	push_swap(&stack_a);
-	print_stack(stack_a);
 	destroy_stack(&stack_a);
 	return (0);
 }

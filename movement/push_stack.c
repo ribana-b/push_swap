@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 20:59:42 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/10 17:44:41 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,21 @@ void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b)
 	temp->next = *stack_a;
 	*stack_a = temp;
 	push_index_plus_plus((*stack_a)->next);
-	push_index_minus_minus((*stack_b));
+	push_index_minus_minus(*stack_b);
+	write(1, "pa\n", 3);
 }
 
 void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
 
-	if (!(*stack_a) || !((*stack_a)->next))
+	if (!(*stack_a))
 		return ;
 	temp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	temp->next = *stack_b;
 	*stack_b = temp;
 	push_index_plus_plus((*stack_b)->next);
-	push_index_minus_minus((*stack_a));
+	push_index_minus_minus(*stack_a);
+	write(1, "pb\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 14:14:13 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/10 22:00:23 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,24 @@
 /* <-- Libraries Section --> */
 
 # include "bfl.h"
-# include <stdio.h>
-# include <stdlib.h>
 
 /* <-- Typedef Section --> */
 
-typedef enum e_bool
+typedef enum e_bool		t_bool;
+typedef struct s_stack	t_stack;
+
+enum e_bool
 {
 	false,
 	true
-}	t_bool;
+};
+
+struct s_stack
+{
+	int		value;
+	int		index;
+	t_stack	*next;
+};
 
 typedef struct s_stack
 {

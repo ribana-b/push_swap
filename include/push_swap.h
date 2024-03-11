@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/10 22:00:23 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/11 13:23:34 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,23 @@
 
 /* <-- Typedef Section --> */
 
-typedef enum e_bool		t_bool;
-typedef struct s_stack	t_stack;
+typedef enum e_bool			t_bool;
+typedef enum e_index		t_index;
+typedef struct s_info		t_info;
+typedef struct s_stack		t_stack;
+typedef struct s_movement	t_movement;
 
 enum e_bool
 {
 	false,
 	true
+};
+
+enum e_index
+{
+	A,
+	B,
+	AMOUNT
 };
 
 struct s_stack
@@ -40,12 +50,15 @@ struct s_stack
 	t_stack	*next;
 };
 
-typedef struct s_stack
+struct s_info
 {
-	int				value;
-	int				index;
-	struct s_stack	*next;
-}					t_stack;
+	t_stack	*stack[AMOUNT];
+	size_t	size_stack[AMOUNT];
+	int		max_stack[AMOUNT];
+	int		min_stack[AMOUNT];
+	int		mid_stack[AMOUNT];
+	char	*movements;
+};
 
 /* <-- Functions Section --> */
 
@@ -75,8 +88,8 @@ void	print_stack(t_stack *stack);
 
 // <-- Sort --> //
 
-void	sort_three(t_stack **stack);
-void	sort_stack(t_stack **stack);
+void	sort_three(t_info *info);
+void	sort_stack(t_info *info);
 
 // <-- Checker --> //
 
@@ -86,6 +99,10 @@ t_bool	is_reverse_sorted(t_stack *stack);
 // <-- Parser --> //
 
 char	***parse_args(int argc, char **argv);
+
+// <-- Info --> //
+
+void	initialise_info(t_info *info, t_stack **stack_a);
 
 // <-- Main --> //
 int		stack_len(t_stack *stack);

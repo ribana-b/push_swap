@@ -69,7 +69,8 @@ SORT_DIR = src/sort/
 SRC_FILES = main.c
 UTILS_FILES = checker.c \
 				stack_manipulation.c \
-				parser.c
+				parser.c \
+				info.c
 MOVEMENT_FILES = push_stack.c \
 				reverse_rotate_stack.c \
 				rotate_stack.c \

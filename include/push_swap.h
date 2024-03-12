@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/11 13:23:34 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 19:58:08 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define PRINT_A ft_printf("Stack A\n");\
+	print_stack(info->stack[A]);
+# define PRINT_B ft_printf("Stack B\n");\
+	print_stack(info->stack[B]);
 
 /* <-- Libraries Section --> */
 
@@ -77,8 +81,8 @@ t_stack	*fill_stack(char ***parsed_args, int index);
 
 // <-- Movements --> //
 
-void	push_to_stack_b(t_info *info, t_bool flag);
 void	push_to_stack_a(t_info *info, t_bool flag);
+void	push_to_stack_b(t_info *info, t_bool flag);
 void	swap_stack_a(t_info *info, t_bool flag);
 void	swap_stack_b(t_info *info, t_bool flag);
 void	swap_both_stacks(t_info *info, t_bool flag);
@@ -92,6 +96,7 @@ void	reverse_rotate_both_stacks(t_info *info, t_bool flag);
 // <-- Debug --> //
 
 void	print_stack(t_stack *stack);
+void	print_info(t_info info);
 
 // <-- Sort --> //
 

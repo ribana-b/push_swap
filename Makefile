@@ -61,6 +61,7 @@ SRC_DIR = src/
 UTILS_DIR = src/utils/
 MOVEMENT_DIR = src/movement/
 OBJ_DIR = obj/
+BIN_DIR = bin/
 
 DEBUG_DIR = src/debug/
 SORT_DIR = src/sort/
@@ -97,22 +98,25 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 # ========================================================================== #
 
 # <-- Project's Target --> #
-all: $(NAME)
+all: $(BIN_DIR) $(BIN_DIR)$(NAME)
 
 # <-- Program/Library Creation --> #
 ifdef WITH_DEBUG
-$(NAME): $(OBJ_DIR) $(OBJ)
+$(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s debug -C $(BFL_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
-	@$(CC) -o $(NAME) $(OBJ) $(INCLUDE) $(LIBRARY)
+	@$(CC) -o $@ $(OBJ) $(INCLUDE) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 else
-$(NAME): $(OBJ_DIR) $(OBJ)
+$(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s -C $(BFL_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
-	@$(CC) -o $(NAME) $(OBJ) $(INCLUDE) $(LIBRARY)
+	@$(CC) -o $@ $(OBJ) $(INCLUDE) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 endif
+
+$(BIN_DIR):
+	@mkdir -p $(BIN_DIR)
 
 # <-- Objects Directory Creation --> #
 $(OBJ_DIR):
@@ -151,7 +155,7 @@ clean:
 
 # <-- Clean Execution + push_swap Destruction --> #
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(BIN_DIR)$(NAME)
 	@make fclean -s -C $(BFL_DIR)
 	@echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 21:00:04 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/11 13:56:40 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,29 @@
 int	stack_len(t_stack *stack)
 {
 	t_stack	*temp;
-	int		i;
+	int		counter;
 
-	i = 0;
+	counter = 0;
 	if (!stack)
 		return (0);
 	temp = stack;
 	while (temp)
 	{
-		++i;
+		++counter;
 		temp = temp->next;
 	}
-	return (i);
+	return (counter);
 }
 
 int	push_swap(t_stack **stack_a)
 {
+	t_info	info;
+
 	if (!(*stack_a))
 		return (1);
-	sort_stack(stack_a);
+	initialise_info(&info, stack_a);
+	sort_stack(&info);
+	*stack_a = info.stack[A];
 	return (0);
 }
 
@@ -47,18 +51,18 @@ int	main(int argc, char **argv)
 	parsed_args = parse_args(argc, argv);
 	if (!parsed_args)
 	{
-		ft_putstr_fd("Error\n", 2);
+		write(2, "Error\n", 6);
 		return (2);
 	}
 	stack_a = fill_stack(parsed_args, 1);
 	if (!stack_a)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_free(&parsed_args, 3);
+		write(2, "Error\n", 6);
 		return (3);
 	}
 	ft_free(&parsed_args, 3);
 	push_swap(&stack_a);
-	print_stack(stack_a);
 	destroy_stack(&stack_a);
 	return (0);
 }

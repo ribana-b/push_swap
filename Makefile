@@ -58,18 +58,19 @@ LIBRARY = -L./BFL/ -lbfl
 # <-- Directories --> #
 BFL_DIR = BFL/
 SRC_DIR = src/
-UTILS_DIR = utils/
-MOVEMENT_DIR = movement/
+UTILS_DIR = src/utils/
+MOVEMENT_DIR = src/movement/
 OBJ_DIR = obj/
 
-DEBUG_DIR = debug/
-SORT_DIR = sort/
+DEBUG_DIR = src/debug/
+SORT_DIR = src/sort/
 
 # <-- Files --> #
-SRC_FILES = push_swap.c
+SRC_FILES = main.c
 UTILS_FILES = checker.c \
 				stack_manipulation.c \
-				parser.c
+				parser.c \
+				info.c
 MOVEMENT_FILES = push_stack.c \
 				reverse_rotate_stack.c \
 				rotate_stack.c \
@@ -158,7 +159,7 @@ fclean: clean
 re: fclean all
 
 # <-- Debug --> #
-debug: fclean
+debug:
 	@make -s WITH_DEBUG=1
 
 # <-- Targets Declaration --> #

@@ -211,7 +211,7 @@ fclean: clean
 re: fclean all
 
 # <-- Fclean Execution + All Execution --> #
-debug: fclean
+debug:
 	@make WITH_DEBUG=1
 
 # <-- Testers -->

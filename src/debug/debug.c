@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 21:36:26 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/07 09:30:20 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/10 18:23:08 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_stack(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		printf("%d: %d\n", temp->index, temp->value);
+		ft_printf("%d: %d\n", temp->index, temp->value);
 		temp = temp->next;
 	}
 }

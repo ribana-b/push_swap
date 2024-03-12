@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/09 05:31:31 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 08:36:16 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ static t_bool	ft_isnumber(char *parsed_args)
 			++counter;
 		else if (parsed_args[index] != '-' && parsed_args[index] != '+')
 			return (false);
+		else if ((parsed_args[index] == '-' || parsed_args[index] == '+')
+			&& counter != 0)
+			return (false);
 		++index;
 	}
 	if (!counter)
@@ -49,7 +52,7 @@ static t_bool	ft_isnumber(char *parsed_args)
 
 static int	alloc_dump(long **dump, size_t size)
 {
-	long			*temp;
+	long	*temp;
 
 	if (size == 0)
 	{
@@ -79,14 +82,15 @@ static t_bool	ft_isvalid(char **parsed_args, long **dump)
 	static size_t	size;
 
 	index = 0;
+	if (!parsed_args[index])
+		return (false);
 	while (parsed_args[index])
 	{
 		if (!alloc_dump(dump, size))
 			return (false);
-		if (!ft_isnumber(parsed_args[index]))
-		{
+		if (!ft_isnumber(parsed_args[index])
+			|| ft_strlen(parsed_args[index]) > 11)
 			return (false);
-		}
 		number = ft_atol(parsed_args[index]);
 		if (number < MIN_INT || number > MAX_INT
 			|| ft_isrepeated(dump, number, size))

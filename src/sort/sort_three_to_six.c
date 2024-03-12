@@ -6,43 +6,38 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:30 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 20:56:39 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/11 13:50:15 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack)
+void	sort_three(t_info *info)
 {
-	if (!(*stack) || !(*stack)->next || !(*stack)->next->next
-		|| is_sorted(*stack))
+	if (is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
-	if ((*stack)->value > (*stack)->next->value
-		&& (*stack)->value > (*stack)->next->next->value)
-	{
-		rotate_stack_a(stack);
-		if ((*stack)->value > (*stack)->next->value)
-			swap_stack_a(*stack);
-	}
-	else if ((*stack)->value < (*stack)->next->value)
-	{
-		reverse_rotate_stack_a(stack);
-		if ((*stack)->value > (*stack)->next->value)
-			swap_stack_a(*stack);
-	}
-	else
-		swap_stack_a(*stack);
+	if (info->stack[A]->value > info->stack[A]->next->value
+		&& info->stack[A]->value > info->stack[A]->next->next->value)
+		rotate_stack_a(info, true);
+	else if (info->stack[A]->value < info->stack[A]->next->value)
+		reverse_rotate_stack_a(info, true);
+	if (!is_sorted(info->stack[A], 0, info->size_stack[A]))
+		swap_stack_a(info, true);
 }
 
-void	sort_stack(t_stack **stack_a)
-{
-	if (!(*stack_a))
-		return ;
-	else if (stack_len(*stack_a) == 2)
 	{
-		if (!is_sorted(*stack_a))
-			swap_stack_a(*stack_a);
 	}
-	else if (stack_len(*stack_a) == 3)
-		sort_three(stack_a);
+	{
+	}
+}
+
+void	sort_stack(t_info *info)
+{
+	if (!(info->stack[A])
+		|| is_sorted(info->stack[A], 0, info->size_stack[A]))
+		return ;
+	if (stack_len(info->stack[A]) == 2)
+		swap_stack_a(info, true);
+	else if (stack_len(info->stack[A]) == 3)
+		sort_three(info);
 }

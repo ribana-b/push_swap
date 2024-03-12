@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/10 10:38:30 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 08:36:16 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_bool	ft_isnumber(char *parsed_args)
 
 static int	alloc_dump(long **dump, size_t size)
 {
-	long			*temp;
+	long	*temp;
 
 	if (size == 0)
 	{

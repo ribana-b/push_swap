@@ -6,20 +6,20 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 02:10:32 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 08:56:56 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 10:17:06 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate_stack_a(t_stack **stack_a, t_bool flag)
+void	reverse_rotate_stack_a(t_info *info, t_bool flag)
 {
 	t_stack	*last;
 	t_stack	*temp;
 
-	if (!(*stack_a) || !((*stack_a)->next))
+	if (!info->stack[A] || !info->stack[A]->next)
 		return ;
-	last = *stack_a;
+	last = info->stack[A];
 	temp = NULL;
 	while (last->next)
 	{
@@ -27,20 +27,20 @@ void	reverse_rotate_stack_a(t_stack **stack_a, t_bool flag)
 		last = last->next;
 	}
 	temp->next = NULL;
-	last->next = *stack_a;
-	*stack_a = last;
+	last->next = info->stack[A];
+	info->stack[A] = last;
 	if (flag)
 		write(1, "rra\n", 4);
 }
 
-void	reverse_rotate_stack_b(t_stack **stack_b, t_bool flag)
+void	reverse_rotate_stack_b(t_info *info, t_bool flag)
 {
 	t_stack	*last;
 	t_stack	*temp;
 
-	if (!(*stack_b) || !((*stack_b)->next))
+	if (!info->stack[B] || !info->stack[B]->next)
 		return ;
-	last = *stack_b;
+	last = info->stack[B];
 	temp = NULL;
 	while (last->next)
 	{
@@ -48,15 +48,14 @@ void	reverse_rotate_stack_b(t_stack **stack_b, t_bool flag)
 		last = last->next;
 	}
 	temp->next = NULL;
-	last->next = *stack_b;
-	*stack_b = last;
+	last->next = info->stack[B];
+	info->stack[B] = last;
 	if (flag)
 		write(1, "rrb\n", 4);
 }
 
-void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b,
-		t_bool flag)
+void	reverse_rotate_both_stacks(t_info *info, t_bool flag)
 {
-	reverse_rotate_stack_a(stack_a, flag);
-	reverse_rotate_stack_b(stack_b, flag);
+	reverse_rotate_stack_a(info, flag);
+	reverse_rotate_stack_b(info, flag);
 }

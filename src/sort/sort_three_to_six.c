@@ -14,32 +14,30 @@
 
 void	sort_three(t_info *info)
 {
-	if (!info->stack[A] || !info->stack[A]->next || !info->stack[A]->next->next
-		|| is_sorted(info->stack[A]))
+	if (is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
 	if (info->stack[A]->value > info->stack[A]->next->value
 		&& info->stack[A]->value > info->stack[A]->next->next->value)
-	{
-		rotate_stack_a(&info->stack[A]);
-		if (info->stack[A]->value > info->stack[A]->next->value)
-			swap_stack_a(info->stack[A]);
-	}
+		rotate_stack_a(info, true);
 	else if (info->stack[A]->value < info->stack[A]->next->value)
+		reverse_rotate_stack_a(info, true);
+	if (!is_sorted(info->stack[A], 0, info->size_stack[A]))
+		swap_stack_a(info, true);
+}
+
 	{
-		reverse_rotate_stack_a(&info->stack[A]);
-		if (info->stack[A]->value > info->stack[A]->next->value)
-			swap_stack_a(info->stack[A]);
 	}
-	else
-		swap_stack_a(info->stack[A]);
+	{
+	}
 }
 
 void	sort_stack(t_info *info)
 {
-	if (!(info->stack[A]) || is_sorted(info->stack[A]))
+	if (!(info->stack[A])
+		|| is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
 	if (stack_len(info->stack[A]) == 2)
-		swap_stack_a(info->stack[A]);
+		swap_stack_a(info, true);
 	else if (stack_len(info->stack[A]) == 3)
 		sort_three(info);
 }

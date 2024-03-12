@@ -6,40 +6,40 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:47:07 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 08:54:14 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 10:03:05 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack_a(t_stack *stack_a, t_bool flag)
+void	swap_stack_a(t_info *info, t_bool flag)
 {
 	int	temp;
 
-	if (!stack_a || !stack_a->next)
+	if (!info->stack[A] || !info->stack[A]->next)
 		return ;
-	temp = stack_a->value;
-	stack_a->value = stack_a->next->value;
-	stack_a->next->value = temp;
+	temp = info->stack[A]->value;
+	info->stack[A]->value = info->stack[A]->next->value;
+	info->stack[A]->next->value = temp;
 	if (flag)
 		write(1, "sa\n", 3);
 }
 
-void	swap_stack_b(t_stack *stack_b, t_bool flag)
+void	swap_stack_b(t_info *info, t_bool flag)
 {
 	int	temp;
 
-	if (!stack_b || !stack_b->next)
+	if (!info->stack[B] || !info->stack[B]->next)
 		return ;
-	temp = stack_b->value;
-	stack_b->value = stack_b->next->value;
-	stack_b->next->value = temp;
+	temp = info->stack[B]->value;
+	info->stack[B]->value = info->stack[B]->next->value;
+	info->stack[B]->next->value = temp;
 	if (flag)
 		write(1, "sb\n", 3);
 }
 
-void	swap_both_stacks(t_stack *stack_a, t_stack *stack_b, t_bool flag)
+void	swap_both_stacks(t_info *info, t_bool flag)
 {
-	swap_stack_a(stack_a, flag);
-	swap_stack_b(stack_b, flag);
+	swap_stack_a(info, flag);
+	swap_stack_b(info, flag);
 }

@@ -25,7 +25,8 @@
 /* <-- Typedef Section --> */
 
 typedef enum e_bool			t_bool;
-typedef enum e_index		t_index;
+typedef enum e_name			t_name;
+typedef enum e_element		t_element;
 typedef struct s_info		t_info;
 typedef struct s_stack		t_stack;
 typedef struct s_movement	t_movement;
@@ -36,27 +37,33 @@ enum e_bool
 	true
 };
 
-enum e_index
+enum e_name
 {
 	A,
 	B,
-	AMOUNT
+	NAME
+};
+
+enum e_element
+{
+	INDEX,
+	VALUE,
+	ELEMENT
 };
 
 struct s_stack
 {
 	int		value;
-	int		index;
+	size_t	index;
 	t_stack	*next;
 };
 
 struct s_info
 {
-	t_stack	*stack[AMOUNT];
-	size_t	size_stack[AMOUNT];
-	int		max_stack[AMOUNT];
-	int		min_stack[AMOUNT];
-	int		mid_stack[AMOUNT];
+	t_stack	*stack[NAME];
+	size_t	size_stack[NAME];
+	int		max_stack[NAME][ELEMENT];
+	int		min_stack[NAME][ELEMENT];
 	char	*movements;
 };
 
@@ -70,18 +77,17 @@ t_stack	*fill_stack(char ***parsed_args, int index);
 
 // <-- Movements --> //
 
-void	swap_stack_a(t_stack *stack_a, t_bool flag);
-void	swap_stack_b(t_stack *stack_b, t_bool flag);
-void	swap_both_stacks(t_stack *stack_a, t_stack *stack_b, t_bool flag);
-void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b, t_bool flag);
-void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b, t_bool flag);
-void	rotate_stack_a(t_stack **stack_a, t_bool flag);
-void	rotate_stack_b(t_stack **stack_b, t_bool flag);
-void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b, t_bool flag);
-void	reverse_rotate_stack_a(t_stack **stack_a, t_bool flag);
-void	reverse_rotate_stack_b(t_stack **stack_a, t_bool flag);
-void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b,
-			t_bool flag);
+void	push_to_stack_b(t_info *info, t_bool flag);
+void	push_to_stack_a(t_info *info, t_bool flag);
+void	swap_stack_a(t_info *info, t_bool flag);
+void	swap_stack_b(t_info *info, t_bool flag);
+void	swap_both_stacks(t_info *info, t_bool flag);
+void	rotate_stack_a(t_info *info, t_bool flag);
+void	rotate_stack_b(t_info *info, t_bool flag);
+void	rotate_both_stacks(t_info *info, t_bool flag);
+void	reverse_rotate_stack_a(t_info *info, t_bool flag);
+void	reverse_rotate_stack_b(t_info *info, t_bool flag);
+void	reverse_rotate_both_stacks(t_info *info, t_bool flag);
 
 // <-- Debug --> //
 
@@ -94,8 +100,8 @@ void	sort_stack(t_info *info);
 
 // <-- Checker --> //
 
-t_bool	is_sorted(t_stack *stack);
-t_bool	is_reverse_sorted(t_stack *stack);
+t_bool	is_sorted(t_stack *stack, size_t start, size_t end);
+t_bool	is_reverse_sorted(t_stack *stack, size_t start, size_t end);
 
 // <-- Parser --> //
 

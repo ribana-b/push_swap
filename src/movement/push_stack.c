@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 08:57:58 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 10:10:47 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,34 @@ static void	push_index_minus_minus(t_stack *stack)
 	}
 }
 
-void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b, t_bool flag)
+void	push_to_stack_a(t_info *info, t_bool flag)
 {
 	t_stack	*temp;
 
-	if (!(*stack_b))
+	if (!info->stack[B])
 		return ;
-	temp = *stack_b;
-	*stack_b = (*stack_b)->next;
-	temp->next = *stack_a;
-	*stack_a = temp;
-	push_index_plus_plus((*stack_a)->next);
-	push_index_minus_minus(*stack_b);
+	temp = info->stack[B];
+	info->stack[B] = info->stack[B]->next;
+	temp->next = info->stack[A];
+	info->stack[A] = temp;
+	push_index_plus_plus(info->stack[A]->next);
+	push_index_minus_minus(info->stack[B]);
 	if (flag)
 		write(1, "pa\n", 3);
 }
 
-void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b, t_bool flag)
+void	push_to_stack_b(t_info *info, t_bool flag)
 {
 	t_stack	*temp;
 
-	if (!(*stack_a))
+	if (!info->stack[B])
 		return ;
-	temp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	temp->next = *stack_b;
-	*stack_b = temp;
-	push_index_plus_plus((*stack_b)->next);
-	push_index_minus_minus(*stack_a);
+	temp = info->stack[A];
+	info->stack[A] = info->stack[A]->next;
+	temp->next = info->stack[B];
+	info->stack[B] = temp;
+	push_index_plus_plus(info->stack[B]->next);
+	push_index_minus_minus(info->stack[A]);
 	if (flag)
 		write(1, "pb\n", 3);
 }

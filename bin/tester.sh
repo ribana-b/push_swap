@@ -2,6 +2,11 @@
 
 path=$(dirname $0)
 
+move_counter() {
+	output=$($path/push_swap $1 | wc -l)
+	echo $output
+}
+
 test_checker() {
 	output=$($path/push_swap $1 | $path/checker_linux $1 | xargs printf "%s")
 	if [[ $output == "OK" ]]; then
@@ -71,3 +76,77 @@ test_full "2 1 3"
 test_full "2 3 1"
 test_full "3 1 2"
 test_full "3 2 1"
+
+echo
+echo "Four elements"
+test_full "1 2 3 4"
+test_full "1 2 4 3"
+test_full "1 3 2 4"
+test_full "1 3 4 2"
+test_full "1 4 2 3"
+test_full "1 4 3 2"
+test_full "2 1 3 4"
+test_full "2 1 4 3"
+test_full "2 3 1 4"
+test_full "2 3 4 1"
+test_full "2 4 1 3"
+test_full "2 4 3 1"
+test_full "3 1 2 4"
+test_full "3 1 4 2"
+test_full "3 2 1 4"
+test_full "3 2 4 1"
+test_full "3 4 1 2"
+test_full "3 4 2 1"
+test_full "4 1 2 3"
+test_full "4 1 3 2"
+test_full "4 2 1 3"
+test_full "4 2 3 1"
+test_full "4 3 1 2"
+test_full "4 3 2 1"
+
+# Get the movement counter of the tests above
+
+#echo
+#echo "One element"
+#move_counter 1
+#
+#echo
+#echo "Two elements"
+#move_counter "1 2"
+#move_counter "2 1"
+#
+#echo
+#echo "Three elements"
+#move_counter "1 2 3"
+#move_counter "1 3 2"
+#move_counter "2 1 3"
+#move_counter "2 3 1"
+#move_counter "3 1 2"
+#move_counter "3 2 1"
+#
+#echo
+#echo "Four elements"
+#move_counter "1 2 3 4"
+#move_counter "1 2 4 3"
+#move_counter "1 3 2 4"
+#move_counter "1 3 4 2"
+#move_counter "1 4 2 3"
+#move_counter "1 4 3 2"
+#move_counter "2 1 3 4"
+#move_counter "2 1 4 3"
+#move_counter "2 3 1 4"
+#move_counter "2 3 4 1"
+#move_counter "2 4 1 3"
+#move_counter "2 4 3 1"
+#move_counter "3 1 2 4"
+#move_counter "3 1 4 2"
+#move_counter "3 2 1 4"
+#move_counter "3 2 4 1"
+#move_counter "3 4 1 2"
+#move_counter "3 4 2 1"
+#move_counter "4 1 2 3"
+#move_counter "4 1 3 2"
+#move_counter "4 2 1 3"
+#move_counter "4 2 3 1"
+#move_counter "4 3 1 2"
+#move_counter "4 3 2 1"

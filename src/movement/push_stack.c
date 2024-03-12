@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/10 17:44:41 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 08:57:58 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	push_index_minus_minus(t_stack *stack)
 	}
 }
 
-void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b)
+void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b, t_bool flag)
 {
 	t_stack	*temp;
 
@@ -52,10 +52,11 @@ void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = temp;
 	push_index_plus_plus((*stack_a)->next);
 	push_index_minus_minus(*stack_b);
-	write(1, "pa\n", 3);
+	if (flag)
+		write(1, "pa\n", 3);
 }
 
-void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b)
+void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b, t_bool flag)
 {
 	t_stack	*temp;
 
@@ -67,5 +68,6 @@ void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = temp;
 	push_index_plus_plus((*stack_b)->next);
 	push_index_minus_minus(*stack_a);
-	write(1, "pb\n", 3);
+	if (flag)
+		write(1, "pb\n", 3);
 }

@@ -6,13 +6,13 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 01:45:23 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/09 13:30:43 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 08:57:37 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_stack_a(t_stack **stack_a)
+void	rotate_stack_a(t_stack **stack_a, t_bool flag)
 {
 	t_stack	*first;
 	t_stack	*temp;
@@ -26,10 +26,11 @@ void	rotate_stack_a(t_stack **stack_a)
 		temp = temp->next;
 	temp->next = first;
 	first->next = NULL;
-	write(1, "ra\n", 3);
+	if (flag)
+		write(1, "ra\n", 3);
 }
 
-void	rotate_stack_b(t_stack **stack_b)
+void	rotate_stack_b(t_stack **stack_b, t_bool flag)
 {
 	t_stack	*first;
 	t_stack	*temp;
@@ -43,11 +44,12 @@ void	rotate_stack_b(t_stack **stack_b)
 		temp = temp->next;
 	temp->next = first;
 	first->next = NULL;
-	write(1, "rb\n", 3);
+	if (flag)
+		write(1, "rb\n", 3);
 }
 
-void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b)
+void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b, t_bool flag)
 {
-	rotate_stack_a(stack_a);
-	rotate_stack_b(stack_b);
+	rotate_stack_a(stack_a, flag);
+	rotate_stack_b(stack_b, flag);
 }

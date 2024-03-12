@@ -70,17 +70,18 @@ t_stack	*fill_stack(char ***parsed_args, int index);
 
 // <-- Movements --> //
 
-void	swap_stack_a(t_stack *stack_a);
-void	swap_stack_b(t_stack *stack_b);
-void	swap_both_stacks(t_stack *stack_a, t_stack *stack_b);
-void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b);
-void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b);
-void	rotate_stack_a(t_stack **stack_a);
-void	rotate_stack_b(t_stack **stack_b);
-void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b);
-void	reverse_rotate_stack_a(t_stack **stack_a);
-void	reverse_rotate_stack_b(t_stack **stack_a);
-void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b);
+void	swap_stack_a(t_stack *stack_a, t_bool flag);
+void	swap_stack_b(t_stack *stack_b, t_bool flag);
+void	swap_both_stacks(t_stack *stack_a, t_stack *stack_b, t_bool flag);
+void	push_to_stack_b(t_stack **stack_a, t_stack **stack_b, t_bool flag);
+void	push_to_stack_a(t_stack **stack_a, t_stack **stack_b, t_bool flag);
+void	rotate_stack_a(t_stack **stack_a, t_bool flag);
+void	rotate_stack_b(t_stack **stack_b, t_bool flag);
+void	rotate_both_stacks(t_stack **stack_a, t_stack **stack_b, t_bool flag);
+void	reverse_rotate_stack_a(t_stack **stack_a, t_bool flag);
+void	reverse_rotate_stack_b(t_stack **stack_a, t_bool flag);
+void	reverse_rotate_both_stacks(t_stack **stack_a, t_stack **stack_b,
+			t_bool flag);
 
 // <-- Debug --> //
 

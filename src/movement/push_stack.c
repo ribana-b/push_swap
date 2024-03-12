@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 12:13:10 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 19:01:21 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	push_to_stack_a(t_info *info, t_bool flag)
 	info->stack[B] = info->stack[B]->next;
 	temp->next = info->stack[A];
 	info->stack[A] = temp;
+	++info->size_stack[A];
+	--info->size_stack[B];
 	if (flag)
 		write(1, "pa\n", 3);
 }
@@ -36,6 +38,8 @@ void	push_to_stack_b(t_info *info, t_bool flag)
 	info->stack[A] = info->stack[A]->next;
 	temp->next = info->stack[B];
 	info->stack[B] = temp;
+	--info->size_stack[A];
+	++info->size_stack[B];
 	if (flag)
 		write(1, "pb\n", 3);
 }

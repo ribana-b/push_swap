@@ -159,7 +159,7 @@ fclean: clean
 re: fclean all
 
 # <-- Debug --> #
-debug: fclean
+debug:
 	@make -s WITH_DEBUG=1
 
 # <-- Targets Declaration --> #

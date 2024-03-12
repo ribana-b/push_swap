@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:38:22 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 10:10:47 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/12 10:58:58 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	push_to_stack_b(t_info *info, t_bool flag)
 {
 	t_stack	*temp;
 
-	if (!info->stack[B])
+	if (!info->stack[A])
 		return ;
 	temp = info->stack[A];
 	info->stack[A] = info->stack[A]->next;

@@ -75,7 +75,8 @@ UTILS_FILES = checker.c \
 MOVEMENT_FILES = push_stack.c \
 				reverse_rotate_stack.c \
 				rotate_stack.c \
-				swap_stack.c
+				swap_stack.c \
+				best_move.c
 
 DEBUG_FILES = debug.c
 SORT_FILES = sort_three_to_six.c

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/13 09:08:17 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/13 11:14:24 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	***parse_args(int argc, char **argv);
 
 // <-- Info --> //
 
-void	fill_min_max_index(t_info *info);
+void	fill_min_max_index(t_info *info, t_name name);
 void	reset_info_index(t_info *info, t_name name);
 void	initialise_info(t_info *info, t_stack **stack_a);
 

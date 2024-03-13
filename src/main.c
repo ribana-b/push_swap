@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 13:21:08 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/13 09:40:52 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	push_swap(t_stack **stack_a)
 	if (!(*stack_a))
 		return (1);
 	initialise_info(&info, stack_a);
-	sort_stack(&info);
+	sort_two_to_six(&info);
 	*stack_a = info.stack[A];
 	return (0);
 }

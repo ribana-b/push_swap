@@ -79,7 +79,7 @@ MOVEMENT_FILES = push_stack.c \
 				best_move.c
 
 DEBUG_FILES = debug.c
-SORT_FILES = sort_three_to_six.c
+SORT_FILES = sort_two_to_six.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/13 11:14:24 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/14 15:42:28 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ void	rotate_both_stacks(t_info *info, t_bool flag);
 void	reverse_rotate_stack_a(t_info *info, t_bool flag);
 void	reverse_rotate_stack_b(t_info *info, t_bool flag);
 void	reverse_rotate_both_stacks(t_info *info, t_bool flag);
-void	move_min_to_the_top(t_info *info);
+void	move_min_to_the_top(t_info *info, t_name name);
+void	move_max_to_the_top(t_info *info, t_name name);
 
 // <-- Debug --> //
 
@@ -101,6 +102,7 @@ void	print_info(t_info info);
 
 // <-- Sort --> //
 
+void	sort_three(t_info *info);
 void	sort_two_to_six(t_info *info);
 
 // <-- Checker --> //
@@ -121,4 +123,4 @@ void	initialise_info(t_info *info, t_stack **stack_a);
 // <-- Main --> //
 int		stack_len(t_stack *stack);
 
-#endif
+#endif // PUSH_SWAP_H

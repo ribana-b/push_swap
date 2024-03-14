@@ -6,13 +6,13 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:30 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/13 18:51:14 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/14 15:43:05 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_three(t_info *info)
+void	sort_three(t_info *info)
 {
 	if (is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
@@ -28,7 +28,7 @@ static void	sort_three(t_info *info)
 static void	sort_four(t_info *info)
 {
 	fill_min_max_index(info, A);
-	move_min_to_the_top(info);
+	move_min_to_the_top(info, A);
 	if (is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
 	push_to_stack_b(info, true);
@@ -39,7 +39,7 @@ static void	sort_four(t_info *info)
 static void	sort_five(t_info *info)
 {
 	fill_min_max_index(info, A);
-	move_min_to_the_top(info);
+	move_min_to_the_top(info, A);
 	if (is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
 	push_to_stack_b(info, true);
@@ -51,7 +51,7 @@ static void	sort_five(t_info *info)
 static void	sort_six(t_info *info)
 {
 	fill_min_max_index(info, A);
-	move_min_to_the_top(info);
+	move_min_to_the_top(info, A);
 	if (is_sorted(info->stack[A], 0, info->size_stack[A]))
 		return ;
 	push_to_stack_b(info, true);

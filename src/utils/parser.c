@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 08:36:16 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/18 12:44:42 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,9 @@ char	***parse_args(int argc, char **argv)
 		parsed_args[index + 1] = NULL;
 		parsed_args[index] = ft_split(argv[index + 1], ' ');
 		if (!parsed_args[index])
-			return (ft_free(&parsed_args, 3));
+			return (ft_free(&parsed_args, 3), ft_free(&dump, 1));
 		if (!ft_isvalid(parsed_args[index], &dump))
-		{
-			ft_free(&dump, 1);
-			return (ft_free(&parsed_args, 3));
-		}
+			return (ft_free(&parsed_args, 3), ft_free(&dump, 1));
 		++index;
 	}
 	ft_free(&dump, 1);

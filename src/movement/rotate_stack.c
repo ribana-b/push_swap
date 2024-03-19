@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 01:45:23 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 10:14:36 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/19 15:53:33 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	rotate_stack_b(t_info *info, t_bool flag)
 
 void	rotate_both_stacks(t_info *info, t_bool flag)
 {
-	rotate_stack_a(info, flag);
-	rotate_stack_b(info, flag);
+	rotate_stack_a(info, false);
+	rotate_stack_b(info, false);
+	if (flag)
+		write(1, "rr\n", 3);
 }

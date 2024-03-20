@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/13 09:40:52 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/20 11:56:44 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,35 @@ int	stack_len(t_stack *stack)
 	return (counter);
 }
 
-int	push_swap(t_stack **stack_a)
+void	update_index(t_info *info)
+{
+	size_t	index;
+	t_stack	*temp;
+
+	index = 0;
+	temp = info->stack[A];
+	while (temp)
+	{
+		temp->index = index++;
+		temp = temp->next;
+	}
+	index = 0;
+	temp = info->stack[B];
+	while (temp)
+	{
+		temp->index = index++;
+		temp = temp->next;
+	}
+}
+
+static int	push_swap(t_stack **stack_a)
 {
 	t_info	info;
 
 	if (!(*stack_a))
 		return (1);
 	initialise_info(&info, stack_a);
-	sort_two_to_six(&info);
+	sort_number(&info);
 	*stack_a = info.stack[A];
 	return (0);
 }

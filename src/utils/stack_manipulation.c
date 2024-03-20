@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:48:46 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/08 21:03:43 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/19 09:03:43 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_stack	*create_stack(int index, int value)
 		return (NULL);
 	stack->index = index;
 	stack->value = value;
+	stack->cost[A] = 0;
+	stack->cost[B] = 0;
+	stack->target = 0;
 	stack->next = NULL;
 	return (stack);
 }

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/13 09:08:17 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/20 11:47:27 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
-# define PRINT_A ft_printf("Stack A\n");\
-	print_stack(info->stack[A]);
-# define PRINT_B ft_printf("Stack B\n");\
-	print_stack(info->stack[B]);
 
 /* <-- Libraries Section --> */
 
@@ -37,8 +33,8 @@ typedef struct s_movement	t_movement;
 
 enum e_bool
 {
-	false,
-	true
+	FALSE,
+	TRUE
 };
 
 enum e_name
@@ -59,6 +55,8 @@ struct s_stack
 {
 	int		value;
 	size_t	index;
+	size_t	target;
+	int		cost[NAME];
 	t_stack	*next;
 };
 
@@ -68,12 +66,11 @@ struct s_info
 	size_t	size_stack[NAME];
 	int		max_stack[NAME][ELEMENT];
 	int		min_stack[NAME][ELEMENT];
-	char	*movements;
 };
 
 /* <-- Functions Section --> */
 
-// <-- Stack manipulation -->//
+// <-- Stack manipulation --> //
 
 t_stack	*create_stack(int index, int value);
 void	destroy_stack(t_stack **stack);
@@ -92,16 +89,16 @@ void	rotate_both_stacks(t_info *info, t_bool flag);
 void	reverse_rotate_stack_a(t_info *info, t_bool flag);
 void	reverse_rotate_stack_b(t_info *info, t_bool flag);
 void	reverse_rotate_both_stacks(t_info *info, t_bool flag);
-void	move_min_to_the_top(t_info *info);
-
-// <-- Debug --> //
-
-void	print_stack(t_stack *stack);
-void	print_info(t_info info);
+void	move_min_to_the_top(t_info *info, t_name name);
+void	move_max_to_the_top(t_info *info, t_name name);
+void	apply_movement(t_info *info, t_stack *cheap);
 
 // <-- Sort --> //
 
-void	sort_two_to_six(t_info *info);
+void	sort_number(t_info *info);
+t_stack	*calculate_cheapest(t_info *info);
+void	assign_cost(t_info *info);
+void	assign_target(t_info *info);
 
 // <-- Checker --> //
 
@@ -114,11 +111,12 @@ char	***parse_args(int argc, char **argv);
 
 // <-- Info --> //
 
-void	fill_min_max_index(t_info *info);
+void	fill_min_max_index(t_info *info, t_name name);
 void	reset_info_index(t_info *info, t_name name);
 void	initialise_info(t_info *info, t_stack **stack_a);
 
 // <-- Main --> //
 int		stack_len(t_stack *stack);
+void	update_index(t_info *info);
 
-#endif
+#endif // PUSH_SWAP_H

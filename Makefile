@@ -68,7 +68,7 @@ SORT_DIR = src/sort/
 
 # <-- Files --> #
 SRC_FILES = main.c
-UTILS_FILES = checker.c \
+UTILS_FILES = check_sorted.c \
 				stack_manipulation.c \
 				parser.c \
 				info.c
@@ -78,21 +78,20 @@ MOVEMENT_FILES = push_stack.c \
 				swap_stack.c \
 				best_move.c
 
-DEBUG_FILES = debug.c
-SORT_FILES = sort_two_to_six.c
+SORT_FILES = sort_numbers.c \
+				sort_cost.c
+
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 MOVEMENT = $(addprefix $(MOVEMENT_DIR), $(MOVEMENT_FILES))
 
-DEBUG = $(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
 SORT = $(addprefix $(SORT_DIR), $(SORT_FILES))
 
 # <-- Objects --> #
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 		$(patsubst $(UTILS_DIR)%.c, $(OBJ_DIR)%.o, $(UTILS)) \
-		$(patsubst $(DEBUG_DIR)%.c, $(OBJ_DIR)%.o, $(DEBUG)) \
 		$(patsubst $(SORT_DIR)%.c, $(OBJ_DIR)%.o, $(SORT)) \
 		$(patsubst $(MOVEMENT_DIR)%.c, $(OBJ_DIR)%.o, $(MOVEMENT))
 
@@ -116,6 +115,7 @@ $(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 endif
 
+# <-- Binaries Directory Creation --> #
 $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
@@ -130,11 +130,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(UTILS_DIR)%.c
-	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
-
-$(OBJ_DIR)%.o: $(DEBUG_DIR)%.c
 	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"

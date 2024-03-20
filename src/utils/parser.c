@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/18 12:44:42 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/20 12:49:36 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static t_bool	ft_isrepeated(long **dump, long number, size_t size)
 	while (index < size)
 	{
 		if ((*dump)[index] == number)
-			return (true);
+			return (TRUE);
 		++index;
 	}
 	(*dump)[index] = number;
-	return (false);
+	return (FALSE);
 }
 
 static t_bool	ft_isnumber(char *parsed_args)
@@ -39,15 +39,15 @@ static t_bool	ft_isnumber(char *parsed_args)
 		if (ft_isdigit(parsed_args[index]))
 			++counter;
 		else if (parsed_args[index] != '-' && parsed_args[index] != '+')
-			return (false);
+			return (FALSE);
 		else if ((parsed_args[index] == '-' || parsed_args[index] == '+')
 			&& counter != 0)
-			return (false);
+			return (FALSE);
 		++index;
 	}
 	if (!counter)
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }
 
 static int	alloc_dump(long **dump, size_t size)
@@ -58,7 +58,7 @@ static int	alloc_dump(long **dump, size_t size)
 	{
 		*dump = (long *)malloc((size + 1) * sizeof(long));
 		if (!(*dump))
-			return (0);
+			return (FALSE);
 	}
 	else
 	{
@@ -66,13 +66,13 @@ static int	alloc_dump(long **dump, size_t size)
 		if (!temp)
 		{
 			ft_free(dump, 1);
-			return (0);
+			return (FALSE);
 		}
 		ft_memcpy(temp, *dump, size * sizeof(long));
 		ft_free(dump, 1);
 		*dump = temp;
 	}
-	return (1);
+	return (TRUE);
 }
 
 static t_bool	ft_isvalid(char **parsed_args, long **dump)
@@ -82,34 +82,31 @@ static t_bool	ft_isvalid(char **parsed_args, long **dump)
 	static size_t	size;
 
 	index = 0;
-	if (!parsed_args[index])
-		return (false);
 	while (parsed_args[index])
 	{
 		if (!alloc_dump(dump, size))
-			return (false);
+			return (FALSE);
 		if (!ft_isnumber(parsed_args[index])
 			|| ft_strlen(parsed_args[index]) > 11)
-			return (false);
+			return (FALSE);
 		number = ft_atol(parsed_args[index]);
 		if (number < MIN_INT || number > MAX_INT
 			|| ft_isrepeated(dump, number, size))
-			return (false);
+			return (FALSE);
 		++index;
 		++size;
 	}
-	return (true);
+	return (TRUE);
 }
 
 char	***parse_args(int argc, char **argv)
 {
-	char		***parsed_args;
-	int			index;
-	static long	*dump;
+	char	***parsed_args;
+	int		index;
+	long	*dump;
 
-	if (!argv)
-		return (NULL);
 	parsed_args = (char ***)malloc(argc * sizeof(char **));
+	dump = NULL;
 	if (!parsed_args)
 		return (NULL);
 	index = 0;

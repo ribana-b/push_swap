@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:06:07 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/13 10:18:50 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/20 11:55:01 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void	initialise_info(t_info *info, t_stack **stack_a)
 	info->max_stack[B][VALUE] = MIN_INT;
 	info->min_stack[A][VALUE] = MAX_INT;
 	info->min_stack[B][VALUE] = MAX_INT;
-	info->movements = NULL;
+	info->max_stack[A][INDEX] = -1;
+	info->max_stack[B][INDEX] = -1;
+	info->min_stack[A][INDEX] = -1;
+	info->min_stack[B][INDEX] = -1;
 }

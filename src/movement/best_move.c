@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:59:15 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/14 15:40:34 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/20 11:36:35 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	move_min_to_the_top(t_info *info, t_name name)
 	}
 	if (counter > info->size_stack[name] / 2 && name == A)
 		while (info->size_stack[name] - counter++)
-			reverse_rotate_stack_a(info, true);
+			reverse_rotate_stack_a(info, TRUE);
 	else if (counter <= info->size_stack[name] / 2 && name == A)
 		while (counter--)
-			rotate_stack_a(info, true);
+			rotate_stack_a(info, TRUE);
 	else if (counter > info->size_stack[name] / 2 && name == B)
 		while (info->size_stack[name] - counter++)
-			reverse_rotate_stack_b(info, true);
+			reverse_rotate_stack_b(info, TRUE);
 	else
 		while (counter--)
-			rotate_stack_b(info, true);
+			rotate_stack_b(info, TRUE);
 }
 
 void	move_max_to_the_top(t_info *info, t_name name)
@@ -52,14 +52,32 @@ void	move_max_to_the_top(t_info *info, t_name name)
 	}
 	if (counter > info->size_stack[name] / 2 && name == A)
 		while (info->size_stack[name] - counter++)
-			reverse_rotate_stack_a(info, true);
+			reverse_rotate_stack_a(info, TRUE);
 	else if (counter <= info->size_stack[name] / 2 && name == A)
 		while (counter--)
-			rotate_stack_a(info, true);
+			rotate_stack_a(info, TRUE);
 	else if (counter > info->size_stack[name] / 2 && name == B)
 		while (info->size_stack[name] - counter++)
-			reverse_rotate_stack_b(info, true);
+			reverse_rotate_stack_b(info, TRUE);
 	else
 		while (counter--)
-			rotate_stack_b(info, true);
+			rotate_stack_b(info, TRUE);
+}
+
+void	apply_movement(t_info *info, t_stack *cheap)
+{
+	if (cheap->cost[A] == 0 && cheap->cost[B] == 0)
+		push_to_stack_a(info, TRUE);
+	else if (cheap->cost[A] < 0 && cheap->cost[B] < 0)
+		reverse_rotate_both_stacks(info, TRUE);
+	else if (cheap->cost[A] > 0 && cheap->cost[B] > 0)
+		rotate_both_stacks(info, TRUE);
+	else if (cheap->cost[A] < 0)
+		reverse_rotate_stack_a(info, TRUE);
+	else if (cheap->cost[A] > 0)
+		rotate_stack_a(info, TRUE);
+	else if (cheap->cost[B] < 0)
+		reverse_rotate_stack_b(info, TRUE);
+	else if (cheap->cost[B] > 0)
+		rotate_stack_b(info, TRUE);
 }

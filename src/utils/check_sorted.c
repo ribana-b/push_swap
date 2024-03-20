@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   check_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:32 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/12 10:23:53 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/20 11:35:13 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ t_bool	is_reverse_sorted(t_stack *stack, size_t start, size_t end)
 	t_stack	*temp;
 
 	if (!stack)
-		return (false);
+		return (FALSE);
 	temp = stack;
 	while (temp->next && start <= end)
 	{
 		if (temp->value < temp->next->value
 			&& temp->index >= start)
-			return (false);
+			return (FALSE);
 		temp = temp->next;
 	}
-	return (true);
+	return (TRUE);
 }
 
 t_bool	is_sorted(t_stack *stack, size_t start, size_t end)
@@ -34,14 +34,14 @@ t_bool	is_sorted(t_stack *stack, size_t start, size_t end)
 	t_stack	*temp;
 
 	if (!stack)
-		return (false);
+		return (FALSE);
 	temp = stack;
 	while (temp->next && start <= end)
 	{
 		if (temp->value > temp->next->value
 			&& temp->index >= start)
-			return (false);
+			return (FALSE);
 		temp = temp->next;
 	}
-	return (true);
+	return (TRUE);
 }

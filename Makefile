@@ -162,7 +162,12 @@ re: fclean all
 debug:
 	@make -s WITH_DEBUG=1
 
+tags:
+	@find . -type f -name "*.c" -o -name "*.h" > temp
+	@ctags -F $(shell cat temp)
+	@rm temp
+
 # <-- Targets Declaration --> #
-.PHONY = all clean debug fclean re
+.PHONY = all clean debug fclean re tags
 
 # ========================================================================== #

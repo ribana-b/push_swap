@@ -6,11 +6,28 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:48:46 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/19 09:03:43 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/21 02:36:14 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	stack_len(t_stack *stack)
+{
+	t_stack	*temp;
+	int		counter;
+
+	counter = 0;
+	if (!stack)
+		return (0);
+	temp = stack;
+	while (temp)
+	{
+		++counter;
+		temp = temp->next;
+	}
+	return (counter);
+}
 
 t_stack	*create_stack(int index, int value)
 {

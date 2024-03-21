@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/20 11:47:27 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/21 02:41:07 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 /* <-- Libraries Section --> */
 
 # include "bfl.h"
+# include <stdlib.h>
+# include <unistd.h>
 
 /* <-- Typedef Section --> */
 
@@ -75,6 +77,7 @@ struct s_info
 t_stack	*create_stack(int index, int value);
 void	destroy_stack(t_stack **stack);
 t_stack	*fill_stack(char ***parsed_args, int index);
+int		stack_len(t_stack *stack);
 
 // <-- Movements --> //
 
@@ -103,7 +106,6 @@ void	assign_target(t_info *info);
 // <-- Checker --> //
 
 t_bool	is_sorted(t_stack *stack, size_t start, size_t end);
-t_bool	is_reverse_sorted(t_stack *stack, size_t start, size_t end);
 
 // <-- Parser --> //
 
@@ -112,11 +114,8 @@ char	***parse_args(int argc, char **argv);
 // <-- Info --> //
 
 void	fill_min_max_index(t_info *info, t_name name);
-void	reset_info_index(t_info *info, t_name name);
 void	initialise_info(t_info *info, t_stack **stack_a);
-
-// <-- Main --> //
-int		stack_len(t_stack *stack);
+void	reset_info_index(t_info *info, t_name name);
 void	update_index(t_info *info);
 
 #endif // PUSH_SWAP_H

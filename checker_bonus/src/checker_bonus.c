@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:25:02 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/21 02:50:03 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/21 09:39:54 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ t_stack	*parse_and_fill(int argc, char **argv)
 
 	parsed_args = parse_args(argc, argv);
 	if (!parsed_args)
-	{
-		write(2, "Error\n", 6);
 		return (NULL);
-	}
 	stack_a = fill_stack(parsed_args, 1);
 	if (!stack_a)
 	{

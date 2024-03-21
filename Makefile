@@ -151,7 +151,7 @@ clean:
 
 # <-- Clean Execution + push_swap Destruction --> #
 fclean: clean
-	@$(RM) $(BIN_DIR)$(NAME)
+	@$(RM) $(BIN_DIR)$(NAME) tags
 	@make fclean -s -C $(BFL_DIR)
 	@echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
@@ -164,7 +164,7 @@ debug:
 
 # <-- Tags --> #
 tags:
-	@find . -type f -name "*.c" -o -name "*.h" > temp
+	@$(shell find . ! -path "./checker_bonus/*" -type f \( -name "*c" -o -name "*.h" \) > temp)
 	@ctags -F $(shell cat temp)
 	@rm temp
 

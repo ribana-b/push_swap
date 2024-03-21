@@ -34,7 +34,7 @@ RESET = \033[0m
 # ========================================================================== #
 
 # <-- Output Name --> #
-NAME = push_swap
+NAME = checker 
 
 # <-- Compilation Command --> #
 CC = cc
@@ -53,46 +53,35 @@ RM = rm -rf
 INCLUDE = -I ./include -I $(BFL_DIR)include
 
 # <-- Link BFL --> #
-LIBRARY = -L./BFL/ -lbfl
+LIBRARY = -L$(BFL_DIR) -lbfl
 
 # <-- Directories --> #
-BFL_DIR = BFL/
+BFL_DIR = ../BFL/
 SRC_DIR = src/
 UTILS_DIR = src/utils/
 MOVEMENT_DIR = src/movement/
 OBJ_DIR = obj/
 BIN_DIR = bin/
 
-DEBUG_DIR = src/debug/
-SORT_DIR = src/sort/
-
 # <-- Files --> #
-SRC_FILES = main.c
-UTILS_FILES = check_sorted.c \
-				stack_manipulation.c \
-				parser.c \
-				info.c
-MOVEMENT_FILES = push_stack.c \
-				reverse_rotate_stack.c \
-				rotate_stack.c \
-				swap_stack.c \
-				best_move.c
-
-SORT_FILES = sort_numbers.c \
-				sort_cost.c
-
+SRC_FILES = checker_bonus.c
+UTILS_FILES = check_sorted_bonus.c \
+				stack_manipulation_bonus.c \
+				parser_bonus.c \
+				info_bonus.c
+MOVEMENT_FILES = push_stack_bonus.c \
+				reverse_rotate_stack_bonus.c \
+				rotate_stack_bonus.c \
+				swap_stack_bonus.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 MOVEMENT = $(addprefix $(MOVEMENT_DIR), $(MOVEMENT_FILES))
 
-SORT = $(addprefix $(SORT_DIR), $(SORT_FILES))
-
 # <-- Objects --> #
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 		$(patsubst $(UTILS_DIR)%.c, $(OBJ_DIR)%.o, $(UTILS)) \
-		$(patsubst $(SORT_DIR)%.c, $(OBJ_DIR)%.o, $(SORT)) \
 		$(patsubst $(MOVEMENT_DIR)%.c, $(OBJ_DIR)%.o, $(MOVEMENT))
 
 # ========================================================================== #
@@ -134,11 +123,6 @@ $(OBJ_DIR)%.o: $(UTILS_DIR)%.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
-$(OBJ_DIR)%.o: $(SORT_DIR)%.c
-	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
-
 $(OBJ_DIR)%.o: $(MOVEMENT_DIR)%.c
 	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -168,11 +152,7 @@ tags:
 	@ctags -F $(shell cat temp)
 	@rm temp
 
-# <-- Bonus --> #
-bonus:
-	@make -s -C checker_bonus
-
 # <-- Targets Declaration --> #
-.PHONY = all bonus clean debug fclean re tags
+.PHONY = all clean debug fclean re tags
 
 # ========================================================================== #

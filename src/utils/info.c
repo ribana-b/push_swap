@@ -6,11 +6,32 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:06:07 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/20 11:55:01 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/21 02:38:14 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	update_index(t_info *info)
+{
+	size_t	index;
+	t_stack	*temp;
+
+	index = 0;
+	temp = info->stack[A];
+	while (temp)
+	{
+		temp->index = index++;
+		temp = temp->next;
+	}
+	index = 0;
+	temp = info->stack[B];
+	while (temp)
+	{
+		temp->index = index++;
+		temp = temp->next;
+	}
+}
 
 void	fill_min_max_index(t_info *info, t_name name)
 {

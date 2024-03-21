@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_manipulation.c                               :+:      :+:    :+:   */
+/*   stack_manipulation_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:48:46 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/21 02:36:14 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/21 02:29:45 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ t_stack	*create_stack(int index, int value)
 		return (NULL);
 	stack->index = index;
 	stack->value = value;
-	stack->cost[A] = 0;
-	stack->cost[B] = 0;
-	stack->target = 0;
 	stack->next = NULL;
 	return (stack);
 }

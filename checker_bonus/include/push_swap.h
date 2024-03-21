@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/21 02:41:07 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/21 02:32:11 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define STDIN 0
 
 /* <-- Libraries Section --> */
 
 # include "bfl.h"
-# include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 /* <-- Typedef Section --> */
 
 typedef enum e_bool			t_bool;
 typedef enum e_name			t_name;
-typedef enum e_element		t_element;
 typedef struct s_info		t_info;
 typedef struct s_stack		t_stack;
 typedef struct s_movement	t_movement;
@@ -46,19 +46,10 @@ enum e_name
 	NAME
 };
 
-enum e_element
-{
-	INDEX,
-	VALUE,
-	ELEMENT
-};
-
 struct s_stack
 {
 	int		value;
 	size_t	index;
-	size_t	target;
-	int		cost[NAME];
 	t_stack	*next;
 };
 
@@ -66,8 +57,6 @@ struct s_info
 {
 	t_stack	*stack[NAME];
 	size_t	size_stack[NAME];
-	int		max_stack[NAME][ELEMENT];
-	int		min_stack[NAME][ELEMENT];
 };
 
 /* <-- Functions Section --> */
@@ -93,15 +82,6 @@ void	reverse_rotate_stack_a(t_info *info, t_bool flag);
 void	reverse_rotate_stack_b(t_info *info, t_bool flag);
 void	reverse_rotate_both_stacks(t_info *info, t_bool flag);
 void	move_min_to_the_top(t_info *info, t_name name);
-void	move_max_to_the_top(t_info *info, t_name name);
-void	apply_movement(t_info *info, t_stack *cheap);
-
-// <-- Sort --> //
-
-void	sort_number(t_info *info);
-t_stack	*calculate_cheapest(t_info *info);
-void	assign_cost(t_info *info);
-void	assign_target(t_info *info);
 
 // <-- Checker --> //
 
@@ -113,9 +93,11 @@ char	***parse_args(int argc, char **argv);
 
 // <-- Info --> //
 
-void	fill_min_max_index(t_info *info, t_name name);
-void	initialise_info(t_info *info, t_stack **stack_a);
 void	reset_info_index(t_info *info, t_name name);
+void	initialise_info(t_info *info, t_stack **stack_a);
+
+// <-- Main --> //
+
 void	update_index(t_info *info);
 
 #endif // PUSH_SWAP_H

@@ -1,8 +1,19 @@
-# ========================================================================== #
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/21 12:57:10 by ribana-b          #+#    #+# Malaga       #
+#    Updated: 2024/05/21 13:02:38 by ribana-b         ###   ########.com       #
+#                                                                              #
+# **************************************************************************** #
 
-# <-- Color Library --> #
+# @--------------------------------------------------------------------------@ #
+# |                                 Colors                                   | #
+# @--------------------------------------------------------------------------@ #
 
-# <-- Text Color --> #
 T_BLACK = \033[30m
 T_RED = \033[31m
 T_GREEN = \033[32m
@@ -12,50 +23,35 @@ T_MAGENTA = \033[35m
 T_CYAN = \033[36m
 T_WHITE = \033[37m
 
-# <-- Text Style --> #
 BOLD = \033[1m
 ITALIC = \033[2m
 UNDERLINE = \033[3m
 STRIKETHROUGH = \033[4m
 
-# <-- Background Color --> #
-B_RED = \033[31m
-B_BLACK = \033[30m
-B_GREEN = \033[32m
-B_YELLOW = \033[33m
-B_BLUE = \033[34m
-B_MAGENTA = \033[35m
-B_CYAN = \033[36m
-B_WHITE = \033[37m
+CLEAR_LINE = \033[1F\r\033[2K
 
-# <-- Reset Everything --> #
 RESET = \033[0m
 
-# ========================================================================== #
+# @--------------------------------------------------------------------------@ #
+# |                                 Macros                                   | #
+# @--------------------------------------------------------------------------@ #
 
-# <-- Output Name --> #
 NAME = checker 
 
-# <-- Compilation Command --> #
 CC = cc
 
-# <-- Compilation Flags --> #
 ifdef WITH_DEBUG
 	CFLAGS = -Wall -Wextra -Werror -ggdb
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
 
-# <-- Remove Command --> #
 RM = rm -rf
 
-# <-- Include Library --> #
-INCLUDE = -I ./include -I $(BFL_DIR)include
+CPPFLAGS = -I ./include -I $(BFL_DIR)include
 
-# <-- Link BFL --> #
 LIBRARY = -L$(BFL_DIR) -lbfl
 
-# <-- Directories --> #
 BFL_DIR = ../BFL/
 SRC_DIR = src/
 UTILS_DIR = src/utils/
@@ -63,7 +59,6 @@ MOVEMENT_DIR = src/movement/
 OBJ_DIR = obj/
 BIN_DIR = bin/
 
-# <-- Files --> #
 SRC_FILES = checker_bonus.c
 UTILS_FILES = check_sorted_bonus.c \
 				stack_manipulation_bonus.c \
@@ -74,85 +69,78 @@ MOVEMENT_FILES = push_stack_bonus.c \
 				rotate_stack_bonus.c \
 				swap_stack_bonus.c
 
-# <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 MOVEMENT = $(addprefix $(MOVEMENT_DIR), $(MOVEMENT_FILES))
 
-# <-- Objects --> #
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 		$(patsubst $(UTILS_DIR)%.c, $(OBJ_DIR)%.o, $(UTILS)) \
 		$(patsubst $(MOVEMENT_DIR)%.c, $(OBJ_DIR)%.o, $(MOVEMENT))
 
-# ========================================================================== #
+COMPILE_MSG = @echo "$(CLEAR_LINE)🧩 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+OBJ_MSG = @echo "✅ 🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
+OUTPUT_MSG = @echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
+CLEAN_MSG = @echo "🗑️  🦔 $(T_YELLOW)$(BOLD)Objects $(RESET)$(T_RED)destroyed successfully!$(RESET)"
+FCLEAN_MSG = @echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
-# <-- Project's Target --> #
+# @--------------------------------------------------------------------------@ #
+# |                                 Targets                                  | #
+# @--------------------------------------------------------------------------@ #
+
 all: $(BIN_DIR) $(BIN_DIR)$(NAME)
 
-# <-- Program/Library Creation --> #
 ifdef WITH_DEBUG
 $(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s debug -C $(BFL_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
-	@$(CC) -o $@ $(OBJ) $(INCLUDE) $(LIBRARY)
+	@$(CC) -o $@ $(OBJ) $(CPPFLAGS) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 else
 $(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
 	@make -s -C $(BFL_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
-	@$(CC) -o $@ $(OBJ) $(INCLUDE) $(LIBRARY)
+	@$(CC) -o $@ $(OBJ) $(CPPFLAGS) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 endif
 
-# <-- Binaries Directory Creation --> #
 $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
-# <-- Objects Directory Creation --> #
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-# <-- Objects Creation --> #
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+	$(COMPILE_MSG)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(UTILS_DIR)%.c
-	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+	$(COMPILE_MSG)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(MOVEMENT_DIR)%.c
-	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+	$(COMPILE_MSG)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-# <-- Objects Destruction --> #
 clean:
 	@$(RM) $(OBJ_DIR)
-	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)Push Swap Objects $(RESET)$(T_RED)destroyed successfully!$(RESET)"
+	$(CLEAN_MSG)
 
-# <-- Clean Execution + push_swap Destruction --> #
 fclean: clean
 	@$(RM) $(BIN_DIR)$(NAME) tags
 	@make fclean -s -C $(BFL_DIR)
-	@echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
+	$(FCLEAN_MSG)
 
-# <-- Fclean Execution + All Execution --> #
-re: fclean all
+re:
+	@make -s fclean
+	@echo
+	@make -s all
 
-# <-- Debug --> #
 debug:
 	@make -s WITH_DEBUG=1
 
-# <-- Tags --> #
 tags:
 	@$(shell find . -type f -name "*.c" -o -name "*.h" > temp)
 	@ctags -F $(shell cat temp)
 	@rm temp
 
-# <-- Targets Declaration --> #
-.PHONY = all clean debug fclean re tags
-
-# ========================================================================== #
+.PHONY: all clean debug fclean re tags

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:24:30 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/20 12:47:31 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/05/30 13:37:19 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	sort_fast(t_info *info)
 
 static int	calculate_average(t_info *info)
 {
-	int		sum;
+	long	sum;
 	t_stack	*temp;
 
 	sum = 0;
@@ -55,7 +55,7 @@ static int	calculate_average(t_info *info)
 		sum += temp->value;
 		temp = temp->next;
 	}
-	return (sum / (int)info->size_stack[A]);
+	return (sum / (long)info->size_stack[A]);
 }
 
 static void	sort_cost(t_info *info)

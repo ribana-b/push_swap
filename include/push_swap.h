@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:24:52 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/21 02:41:07 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/06/27 08:57:41 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,9 @@ void	fill_min_max_index(t_info *info, t_name name);
 void	initialise_info(t_info *info, t_stack **stack_a);
 void	reset_info_index(t_info *info, t_name name);
 void	update_index(t_info *info);
+
+// <-- Main --> //
+
+size_t	ft_numlen(const char *str);
 
 #endif // PUSH_SWAP_H

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:50:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/20 12:49:36 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/06/27 08:58:22 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static t_bool	ft_isvalid(char **parsed_args, long **dump)
 		if (!alloc_dump(dump, size))
 			return (FALSE);
 		if (!ft_isnumber(parsed_args[index])
-			|| ft_strlen(parsed_args[index]) > 11)
+			|| ft_numlen(parsed_args[index]) > 11)
 			return (FALSE);
 		number = ft_atol(parsed_args[index]);
 		if (number < MIN_INT || number > MAX_INT

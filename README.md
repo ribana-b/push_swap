@@ -20,9 +20,77 @@ Push_swap is a function that sorts in ascending order a stack (stack a) using a 
 
 The goal is to sort the stack in the lowest amount of operations possible.
 
-### Bonus
+### Usage
 
-I have to create a function that has to replicate the behaviour of the given checker for push_swap.
+Clone and compile the project
+```shell
+git clone https://github.com/ribana-b/push_swap.git
+cd push_swap
+make
+```
+
+Execute the program
+```shell
+./bin/push_swap <args>
+```
+
+### Examples
+
+```shell
+./bin/push_swap 5 3 2
+```
+
+```shell
+./bin/push_swap "3 1" "5 6" "2 7"
+```
+
+```shell
+./bin/push_swap "2915" 1258 "98123 -1 -2 -3" 
+```
+
+## Bonus
+
+The goal of the bonus is to replicate the behaviour of the given checker for push_swap.
+
+### Usage
+
+Compile the bonus part
+```shell
+make bonus
+```
+Alternatively
+```shell
+cd checker_bonus
+make
+```
+
+Execute the program
+```shell
+./checker_bonus/bin/checker <args>
+```
+
+Then you have to introduce the movements and press <kbd>Ctrl + D</kbd> when you are finished.
+
+Additionally, you can pipe the output of push_swap
+```
+./bin/push_swap <args> | ./checker_bonus/bin/checker <args>
+```
+
+> [!NOTE]
+> `args` must be the same for both `push_swap` and `checker`.
+
+### Examples
+
+```shell
+./checker_bonus/bin/checker 5 3 2 << EOF
+sa
+rra
+EOF
+```
+
+```
+./bin/push_swap 25 30 1 -1 | ./checker_bonus/bin/checker 25 30 1 -1
+```
 
 ## Allowed Functions
 
@@ -32,6 +100,10 @@ I have to create a function that has to replicate the behaviour of the given che
 - [free()](https://linux.die.net/man/3/free)
 - [exit()](https://linux.die.net/man/3/exit)
 - Any function I code from scratch.
+
+## Resources
+
+- Random Number Generator: https://www.random.org/integer-sets/
 
 ## Progress
 
